@@ -1,0 +1,403 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import Specifications from '../../components/sections/Specifications.astro';
+import FeatureCard from '../../components/common/FeatureCard.astro';
+import FAQAccordion from '../../components/sections/FAQAccordion.astro';
+import CallToAction from '../../components/sections/CallToAction.astro';
+import TestimonialSlider from '../../components/sections/TestimonialSlider.astro';
+
+// Product specifications data
+const productSpecs = [
+  {
+    title: "Flight Performance",
+    features: [
+      "Flight Time: Up to 55 minutes",
+      "Range: 8 km",
+      "Max Wind Resistance: 12 m/s",
+      "Operating Temperature: -10°C to 45°C",
+      "Max Speed: 20 m/s",
+      "IP Rating: IP54"
+    ]
+  },
+  {
+    title: "Physical Parameters",
+    features: [
+      "Weight: 3.5 kg (without payload)",
+      "Max Payload: 1.8 kg",
+      "Dimensions: 85 × 80 × 40 cm",
+      "Battery: 16000 mAh LiPo",
+      "Motor Type: Brushless DC",
+      "Propulsion: Quad-rotor design"
+    ]
+  },
+  {
+    title: "Sensor Capabilities",
+    features: [
+      "RGB Camera: 42MP Sony Sensor",
+      "Thermal Imaging: 640×512, 30 Hz",
+      "Multispectral: 5-band with calibration",
+      "LiDAR Optional: 100m range",
+      "Hyperspectral Integration: Compatible",
+      "Simultaneous Data Capture: Up to 3 sensors"
+    ]
+  }
+];
+
+// Features data
+const features = [
+  {
+    title: "Modular Design",
+    description: "Easily swap payloads in under 60 seconds without tools",
+    icon: "fa-solid fa-cubes",
+    url: "/products/aircraft/modular-design"
+  },
+  {
+    title: "Rapid Deployment",
+    description: "Ready to fly in under 5 minutes with our QuickLaunch system",
+    icon: "fa-solid fa-rocket",
+    url: "/products/aircraft/deployment"
+  },
+  {
+    title: "Autonomous Navigation",
+    description: "Advanced obstacle avoidance with redundant navigation systems",
+    icon: "fa-solid fa-satellite",
+    url: "/products/aircraft/autonomy"
+  },
+  {
+    title: "Weather Resistant",
+    description: "Operate in light rain and windy conditions with IP54 rating",
+    icon: "fa-solid fa-cloud-rain",
+    url: "/products/aircraft/durability"
+  }
+];
+
+// FAQ data
+const faqs = [
+  {
+    question: "What training is required to operate the Astradeis drone?",
+    answer: "We provide comprehensive training packages that cover basic operations, advanced flight patterns, maintenance, and emergency procedures. Most operators achieve proficiency within 2-3 days of hands-on training."
+  },
+  {
+    question: "How long does the battery last and what is the charging time?",
+    answer: "Our standard battery provides up to 55 minutes of flight time. Charging from empty to full takes approximately 90 minutes with our fast-charging system, which means you can maintain continuous operations with just two battery packs."
+  },
+  {
+    question: "Can the drone operate in rainy or windy conditions?",
+    answer: "Yes, our aircraft are designed for field operations in challenging conditions. With an IP54 rating, they can operate in light rain and dusty environments. They can handle wind speeds up to 12 m/s (26 mph), making them suitable for most operational scenarios."
+  },
+  {
+    question: "What kind of warranty and support do you offer?",
+    answer: "We provide a standard 2-year manufacturer's warranty covering all hardware defects. Extended warranty options are available. Our support team offers 24/7 technical assistance, and we maintain a global network of certified repair centers."
+  },
+  {
+    question: "Are your drones compliant with aviation regulations?",
+    answer: "Yes, our drones are designed to meet international aviation standards. They come equipped with necessary safety features like geofencing, automatic return-to-home, and ADS-B receivers. We also provide regulatory compliance guidance for different countries."
+  }
+];
+
+// Testimonial data
+const testimonials = [
+  {
+    quote: "The durability of Astradeis drones is exceptional. We've operated in desert conditions for over 200 flights with zero hardware failures.",
+    author: "David Wilson",
+    position: "Field Operations Manager",
+    company: "MineMap Technologies"
+  },
+  {
+    quote: "The modular design saves us countless hours. We can switch from RGB to thermal imaging in seconds, maximizing our productivity on site.",
+    author: "Jessica Barnes",
+    position: "Survey Director",
+    company: "GeoSpatial Solutions"
+  },
+  {
+    quote: "Battery life has exceeded our expectations. We regularly achieve 50+ minutes of flight time, which has transformed how efficiently we can survey large areas.",
+    author: "Thomas Nguyen",
+    position: "Chief Technology Officer",
+    company: "AgriDrone Systems"
+  }
+];
+---
+
+<BaseLayout 
+  title="Advanced Surveying Aircraft" 
+  description="Explore our professional-grade surveying and mapping drones designed for industrial applications with extended flight time and multiple sensor options."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Professional Mapping & Surveying Aircraft" 
+    subtitle="Purpose-built drones engineered for reliability in demanding environments"
+    backgroundImage="/images/products/aircraft-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact" class="btn primary-btn">Request a Demo</a>
+      <a href="/products/aircraft/specifications.pdf" class="btn secondary-btn">Download Full Specs</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Product Introduction -->
+  <section class="product-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Advanced Technology for Professional Results</h2>
+        <p>The Astradeis Surveyor Pro is our flagship unmanned aerial vehicle (UAV) designed specifically for professional mapping, surveying, and inspection applications. Engineered to deliver exceptional data quality and operational reliability, it combines extended flight times, multiple sensor options, and rugged design to excel in demanding field conditions.</p>
+        
+        <p>Whether you're conducting volumetric measurements at a mining site, creating precise digital twins of construction projects, or monitoring crop health across vast agricultural lands, the Surveyor Pro delivers the performance and data quality professionals demand.</p>
+      </div>
+      
+      <div class="product-image">
+        <img src="/images/products/aircraft-detail.jpg" alt="Astradeis Surveyor Pro drone" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Key Features -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title">Key Features</h2>
+      <p class="section-subtitle">Designed with professional operations in mind</p>
+      
+      <div class="features-grid">
+        {features.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            url={feature.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Specifications -->
+  <Specifications
+    title="Technical Specifications"
+    specifications={productSpecs}
+  />
+  
+  <!-- Data Integration Visualization -->
+  <section class="integration-section">
+    <div class="container">
+      <div class="integration-content">
+        <h2>Seamless Data Integration</h2>
+        <p>The Surveyor Pro doesn't just collect data—it's part of a complete ecosystem designed for efficiency. All captured data seamlessly integrates with our cloud processing platform and third-party software solutions.</p>
+        
+        <ul class="integration-list">
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Direct export to popular CAD and GIS formats</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>API connections to major industry software</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Automated workflows for common processing tasks</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Secure cloud storage with organizational permissions</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="integration-image">
+        <img src="/images/products/data-workflow.jpg" alt="Data integration workflow diagram" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="Customer Experiences"
+    testimonials={testimonials}
+  />
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Elevate Your Aerial Data Collection?"
+    text="Contact our solutions team for a personalized consultation and demonstration."
+    buttonText="Schedule a Demo"
+    buttonUrl="/contact?demo=aircraft"
+    backgroundImage="/images/cta/drone-field-operation.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .product-intro {
+    padding: 4rem 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .intro-content {
+    margin-bottom: 2rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  
+  .product-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .features-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .integration-section {
+    padding: 4rem 0;
+  }
+  
+  .integration-section .container {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+  .integration-content {
+    flex: 1;
+  }
+  
+  .integration-image {
+    flex: 1;
+  }
+  
+  .integration-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .integration-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+  }
+  
+  .integration-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .integration-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .integration-list i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  
+  .integration-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 992px) {
+    .integration-section .container {
+      flex-direction: column;
+    }
+    
+    .integration-content, .integration-image {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+  }

@@ -1,0 +1,101 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  icon: string;
+  url?: string;
+}
+
+const { title, description, icon, url } = Astro.props;
+
+// Determine if this is a link card or just a display card
+const isLink = !!url;
+const CardTag = isLink ? 'a' : 'div';
+---
+
+<CardTag href={url} class={`feature-card ${isLink ? 'is-link' : ''}`}>
+  <div class="icon-container">
+    <i class={icon}></i>
+  </div>
+  <h3 class="card-title">{title}</h3>
+  <p class="card-description">{description}</p>
+  {isLink && <span class="learn-more">Learn More</span>}
+</CardTag>
+
+<style>
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  
+  .feature-card.is-link {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .feature-card.is-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .feature-card.is-link:hover .icon-container {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .icon-container {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: var(--color-light-gray);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s ease;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .icon-container i {
+    font-size: 1.8rem;
+  }
+  
+  .card-title {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .card-description {
+    color: #666;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  
+  .learn-more {
+    color: var(--color-teal);
+    font-weight: 600;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .learn-more::after {
+    content: '→';
+    margin-left: 0.3rem;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature-card:hover .learn-more::after {
+    transform: translateX(3px);
+  }
+</style>

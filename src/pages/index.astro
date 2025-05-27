@@ -1,0 +1,295 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import TwoImageTextBlock from '../components/sections/TwoImageTextBlock.astro';
+import ImageTextLeft from '../components/sections/ImageTextLeft.astro';
+import FeatureCard from '../components/common/FeatureCard.astro';
+import CallToAction from '../components/sections/CallToAction.astro';
+import TestimonialSlider from '../components/sections/TestimonialSlider.astro';
+import ImageGallery from '../components/sections/ImageGallery.astro';
+import Footer from '../components/sections/Footer.astro';
+import Header from '../components/layout/Header.astro';
+
+// Sample testimonial data
+const testimonials = [
+  {
+    quote: "Astradeis technology has revolutionized our agricultural operations. Their drones helped us increase crop yield by 30% while reducing water usage.",
+    author: "Sarah Johnson",
+    position: "Operations Director",
+    company: "FarmTech Solutions"
+  },
+  {
+    quote: "The data quality from Astradeis aerial mapping has transformed how we manage our construction sites. Precise, reliable, and incredibly detailed.",
+    author: "Michael Chen",
+    position: "Project Manager",
+    company: "BuildRight Construction"
+  },
+  {
+    quote: "As environmental consultants, we need accurate terrain data. Astradeis delivers consistently excellent results that we can rely on for critical assessments.",
+    author: "Emma Rodriguez",
+    position: "Lead Environmental Scientist",
+    company: "EcoSystems Consulting"
+  }
+];
+
+// Sample gallery images
+const galleryImages = [
+  {
+    src: "/images/industries/agriculture.jpg",
+    alt: "Agricultural drone surveying",
+    title: "Agriculture",
+    description: "Advanced crop monitoring and management",
+    url: "/industries/agriculture"
+  },
+  {
+    src: "/images/industries/construction.jpg",
+    alt: "Construction site mapping",
+    title: "Construction",
+    description: "Precise site surveys and progress tracking",
+    url: "/industries/construction"
+  },
+  {
+    src: "/images/industries/mining.jpg",
+    alt: "Mining operations monitoring",
+    title: "Mining",
+    description: "Volumetric analysis and site safety",
+    url: "/industries/mining"
+  },
+  {
+    src: "/images/industries/land-management.jpg",
+    alt: "Land management aerial view",
+    title: "Land Management",
+    description: "Comprehensive terrain analysis",
+    url: "/industries/land-management"
+  },
+  {
+    src: "/images/industries/environmental.jpg",
+    alt: "Environmental monitoring",
+    title: "Environmental",
+    description: "Ecosystem and habitat assessment",
+    url: "/industries/environmental"
+  }
+];
+
+// Features data
+const features = [
+  {
+    title: "Custom Flight Planning",
+    description: "Create optimized flight paths specific to your project needs",
+    icon: "fa-solid fa-route"
+  },
+  {
+    title: "Multi-Sensor Payload",
+    description: "Collect visual, thermal, multispectral, and LiDAR data in a single flight",
+    icon: "fa-solid fa-camera"
+  },
+  {
+    title: "Data Processing",
+    description: "Advanced processing for accurate 3D models, orthomosaics, and analytics",
+    icon: "fa-solid fa-chart-line"
+  },
+  {
+    title: "Automated Reporting",
+    description: "Generate comprehensive reports with actionable insights",
+    icon: "fa-solid fa-file-chart-column"
+  }
+];
+---
+
+<BaseLayout title="Elevating Innovation, Expanding Horizons" description="Astradeis offers cutting-edge drone technology and aerial data solutions for agriculture, construction, mining, and environmental industries.">
+  
+  <!-- Header Section -->
+  <Header 
+    logo="/images/logo/astradeis-logo.svg" 
+    navLinks={[
+      { label: "Home", url: "/" },
+      { label: "Products", url: "/products" },
+      { label: "Industries", url: "/industries" },
+      { label: "Services", url: "/services" },
+      { label: "Contact", url: "/contact" }
+    ]}
+    socialLinks={[
+      { platform: "Facebook", url: "https://facebook.com/astradeis" },
+      { platform: "Twitter", url: "https://twitter.com/astradeis" },
+      { platform: "LinkedIn", url: "https://linkedin.com/company/astradeis" }
+    ]}
+    contactEmail=""
+    contactPhone="+1 (555) 123-4567"
+    address="123 Drone St, Tech City, TX 75001"
+    privacyPolicyUrl="/privacy-policy"
+    termsOfServiceUrl="/terms-of-service"
+  />
+
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Aerial Intelligence for Your Industry" 
+    subtitle="Advanced drone technology delivering actionable insights"
+    backgroundImage="/images/hero/drone-landscape.jpg">
+    <div class="hero-buttons">
+      <a href="/products" class="btn primary-btn">Explore Products</a>
+      <a href="/contact" class="btn secondary-btn">Get in Touch</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Industry Solutions Gallery -->
+  <section class="industry-intro">
+    <h2 class="section-title">Specialized Solutions for Every Industry</h2>
+    <p class="section-subtitle">Discover how our technology transforms operations across diverse sectors</p>
+  </section>
+  
+  <ImageGallery
+    title=""
+    images={galleryImages}
+  />
+  
+  <!-- Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title">Powerful Technology, Simplified</h2>
+      <p class="section-subtitle">Our end-to-end solution combines hardware excellence with intuitive software</p>
+      
+      <div class="features-grid">
+        {features.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Two Image Text Block -->
+  <TwoImageTextBlock
+    title="Our Advanced Aircraft"
+    text="Purpose-built drones engineered for reliability in demanding environments. With extended flight times and robust weather resistance, our aircraft deliver consistent performance."
+    linkUrl="/products/aircraft"
+    linkText="View Aircraft Specifications"
+    leftImage="/images/products/drone-left.jpg"
+    rightImage="/images/products/drone-right.jpg"
+    leftImageAlt="Astradeis industrial drone in flight"
+    rightImageAlt="Astradeis drone sensor closeup"
+  />
+  
+  <!-- Image Text Block Left -->
+  <ImageTextLeft
+    title="Integrated Data Processing"
+    text="Transform raw data into actionable intelligence with our cloud processing platform. Generate precise 3D models, orthomosaics, and analytical reports with just a few clicks."
+    linkUrl="/products/services"
+    linkText="Explore Data Solutions"
+    image="/images/services/data-processing.jpg"
+    imageAlt="Data processing dashboard interface"
+  />
+  
+  <!-- Testimonials Section -->
+  <TestimonialSlider
+    title="What Our Clients Say"
+    testimonials={testimonials}
+  />
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Transform Your Operations?"
+    text="Schedule a consultation with our expert team to discuss your specific needs."
+    buttonText="Contact Us Today"
+    buttonUrl="/contact"
+    backgroundImage="/images/cta/drone-sunset.jpg"
+  />
+
+  <!-- Footer Section -->
+  <Footer
+    companyName="Astradeis"
+    socialLinks={[
+      { platform: "Facebook", url: "https://facebook.com/astradeis" },
+      { platform: "Twitter", url: "https://twitter.com/astradeis" },
+      { platform: "LinkedIn", url: "https://linkedin.com/company/astradeis" }
+    ]}
+    contactEmail=""
+    contactPhone="+1 (555) 123-4567"
+    address="123 Drone St, Tech City, TX 75001"
+    privacyPolicyUrl="/privacy-policy"
+    termsOfServiceUrl="/terms-of-service"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .industry-intro {
+    text-align: center;
+    padding: 3rem 1rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .features-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+  }
+</style>

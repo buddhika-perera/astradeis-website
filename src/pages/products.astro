@@ -1,0 +1,47 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { getCollection } from 'astro:content';
+const products = await getCollection('products');
+---
+<PageLayout>
+  <h1>Our Products</h1>
+  <div class="products-list">
+    {products.map(product => (
+      <div class="product-card">
+        <h2>{product.data.title}</h2>
+        <p>{product.data.description}</p>
+        {product.data.images && product.data.images.length > 0 && (
+          <img src={product.data.images[0]} alt={product.data.title} style="max-width:200px;" />
+        )}
+        <ul>
+          {product.data.specifications && product.data.specifications.map(spec => (
+            <li>
+              <strong>{spec.title}:</strong> {spec.features && spec.features.join(', ')}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</PageLayout>
+
+<style>
+.products-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.product-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 300px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.product-card img {
+  display: block;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+</style>

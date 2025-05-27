@@ -1,0 +1,101 @@
+---
+export interface Specification {
+  title: string;
+  features: string[];
+}
+
+export interface Props {
+  title: string;
+  specifications: Specification[];
+}
+
+const { title, specifications } = Astro.props;
+---
+
+<section class="specifications">
+  <h2 class="section-title">{title}</h2>
+  <div class="specs-container">
+    {specifications.map((spec) => (
+      <div class="spec-section">
+        <h3 class="spec-title">{spec.title}</h3>
+        <ul class="features-list">
+          {spec.features.map((feature) => (
+            <li>{feature}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .specifications {
+    margin: 4rem 0;
+    padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-title {
+    text-align: center;
+    position: relative;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: var();
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background-color: var(--color-teal);
+    margin: 1rem auto;
+  }
+  
+  .specs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .spec-section {
+    background-color: var(--color-light-gray);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .spec-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .spec-title {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    border-bottom: 2px solid var(--color-teal);
+    padding-bottom: 0.5rem;
+  }
+  
+  .features-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .features-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  .features-list li:last-child {
+    border-bottom: none;
+  }
+</style>

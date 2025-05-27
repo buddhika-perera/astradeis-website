@@ -1,0 +1,68 @@
+---
+// src/components/blog/RelatedPosts.astro
+import { getCollection } from 'astro:content';
+import BlogCard from '../common/BlogCard.astro';
+
+export interface Props {
+  currentPostSlug: string;
+  categories: string[];
+  maxPosts?: number;
+}
+
+const { currentPostSlug, categories, maxPosts = 3 } = Astro.props;
+
+// Get all blog posts
+const allPosts = await getCollection('blog');
+
+// Filter out current post and posts not sharing categories
+const relatedPosts = allPosts
+  .filter(post => post.slug !== currentPostSlug && 
+    post.data.categories.some(category => categories.includes(category)))
+  .sort((a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf())
+  .slice(0, maxPosts);
+---
+
+{relatedPosts.length > 0 && (
+  <div class="related-posts">
+    <h3 class="section-title">Related Articles</h3>
+    <div class="posts-grid">
+      {relatedPosts.map(post => (
+        <BlogCard
+          title={post.data.title}
+          excerpt={post.data.excerpt}
+          image={post.data.image}
+          date={post.data.date.toISOString()}
+          author={post.data.author}
+          url={`/blog/${post.slug}`}
+          categories={post.data.categories}
+        />
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .related-posts {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eee;
+  }
+  
+  .section-title {
+    margin-bottom: 2rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  @media (max-width: 768px) {
+    .posts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

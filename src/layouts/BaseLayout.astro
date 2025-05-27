@@ -1,0 +1,21 @@
+---
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/700.css';
+import '@fontsource/open-sans/300.css';
+import '@fontsource/open-sans/400.css';
+import '@fontsource/open-sans/600.css';
+import '../styles/variables.css';
+import '../styles/global.css';
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><slot name="title" /></title>
+    <meta name="description" content=""><slot name="description" /></meta>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

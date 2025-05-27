@@ -1,0 +1,133 @@
+---
+// src/pages/blog/[slug].astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Get the slug from the URL
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+// Get the entry from props
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+// Format the date
+const formattedDate = new Date(entry.data.date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+---
+
+<BaseLayout title={entry.data.title}>
+  <div class="blog-post">
+    <div class="post-header">
+      <img src={entry.data.image} alt={entry.data.title} class="post-image" />
+      <div class="post-meta">
+        <div class="categories">
+          {entry.data.categories.map(category => (
+            <span class="category">{category}</span>
+          ))}
+        </div>
+        <h1 class="post-title">{entry.data.title}</h1>
+        <div class="author-info">
+          <span class="date">{formattedDate}</span>
+          <span class="author">By {entry.data.author}</span>
+          {entry.data.authorTitle && <span class="author-title">{entry.data.authorTitle}</span>}
+        </div>
+      </div>
+    </div>
+    
+    <div class="post-content">
+      <Content />
+    </div>
+    
+    <!-- Additional blog post components like sharing, related posts, etc. -->
+  </div>
+</BaseLayout>
+
+<style>
+  /* Blog post styling */
+  .blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .post-header {
+    margin-bottom: 2rem;
+  }
+  
+  .post-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .categories {
+    margin-bottom: 1rem;
+  }
+  
+  .category {
+    display: inline-block;
+    background-color: var(--color-soft-yellow);
+    color: var(--color-charcoal-gray);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    margin-right: 0.5rem;
+  }
+  
+  .post-title {
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  
+  .author-info {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .author-info > * {
+    margin-right: 1rem;
+  }
+  
+  .post-content {
+    line-height: 1.8;
+    color: #333;
+  }
+  
+  .post-content h2 {
+    margin: 2rem 0 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .post-content p {
+    margin-bottom: 1.5rem;
+  }
+  
+  .post-content img {
+    max-width: 100%;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .post-title {
+      font-size: 2rem;
+    }
+    
+    .post-image {
+      height: 300px;
+    }
+  }
+</style>

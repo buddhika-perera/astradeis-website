@@ -1,0 +1,140 @@
+---
+export interface FAQ {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  title: string;
+  faqs: FAQ[];
+}
+
+const { title, faqs } = Astro.props;
+---
+
+<section class="faq-section">
+  <div class="container">
+    <h2 class="section-title">{title}</h2>
+    
+    <div class="faq-accordion">
+      {faqs.map((faq, index) => (
+        <div class="faq-item">
+          <button class="faq-question" id={`faq-${index}`} aria-expanded="false" aria-controls={`faq-answer-${index}`}>
+            {faq.question}
+            <span class="icon">
+              <i class="fas fa-plus"></i>
+            </span>
+          </button>
+          <div class="faq-answer" id={`faq-answer-${index}`} aria-labelledby={`faq-${index}`} hidden>
+            <p>{faq.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        // Get the current state
+        const expanded = question.getAttribute('aria-expanded') === 'true';
+        
+        // Toggle the state
+        question.setAttribute('aria-expanded', !expanded);
+        
+        // Get the answer element
+        const answerId = question.getAttribute('aria-controls');
+        const answer = document.getElementById(answerId);
+        
+        // Toggle the hidden attribute
+        if (expanded) {
+          answer.setAttribute('hidden', '');
+        } else {
+          answer.removeAttribute('hidden');
+        }
+        
+        // Toggle the icon
+        const icon = question.querySelector('.icon i');
+        icon.classList.toggle('fa-plus');
+        icon.classList.toggle('fa-minus');
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .faq-accordion {
+    margin-top: 2rem;
+  }
+  
+  .faq-item {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+  }
+  
+  .faq-question {
+    width: 100%;
+    background-color: white;
+    border: none;
+    padding: 1.25rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .faq-question:hover {
+    background-color: var(--color-light-gray);
+  }
+  
+  .faq-question[aria-expanded="true"] {
+    background-color: var(--color-light-gray);
+  }
+  
+  .icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .faq-answer {
+    padding: 0 1.25rem 1.25rem;
+    background-color: white;
+  }
+  
+  .faq-answer p {
+    margin: 0;
+    color: #666;
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+export interface Props {
+  title: string;
+  subtitle?: string;
+  backgroundImage: string;
+}
+
+const { title, subtitle, backgroundImage } = Astro.props;
+---
+
+<section class="hero" style={`background-image: url(${backgroundImage});`}>
+  <div class="hero-content">
+    <h1>{title}</h1>
+    {subtitle && <h2>{subtitle}</h2>}
+    <slot /> <!-- For any additional content like buttons -->
+  </div>
+</section>
+
+<style>
+  .hero {
+    width: 100%;
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-image: linear-gradient(to bottom right, var(--color-light-gray), var(--color-soft-yellow), var(--color-cool-blue));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 2rem;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      height: 450px;
+    }
+    
+    h1 {
+      font-size: 2.25rem;
+    }
+    
+    h2 {
+      font-size: 1.25rem;
+    }
+  }
+</style>

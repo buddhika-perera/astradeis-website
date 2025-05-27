@@ -1,0 +1,294 @@
+---
+export interface Testimonial {
+  quote: string;
+  author: string;
+  position: string;
+  company: string;
+  image?: string;
+}
+
+export interface Props {
+  title: string;
+  testimonials: Testimonial[];
+}
+
+const { title, testimonials } = Astro.props;
+---
+
+<section class="testimonial-slider">
+  <div class="container">
+    <h2 class="section-title">{title}</h2>
+    
+    <div class="slider-container">
+      <div class="slider" id="testimonialSlider">
+        {testimonials.map((testimonial, index) => (
+          <div class={`slide ${index === 0 ? 'active' : ''}`} data-index={index}>
+            <div class="quote-icon">
+              <i class="fas fa-quote-left"></i>
+            </div>
+            <p class="quote">{testimonial.quote}</p>
+            <div class="author-info">
+              {testimonial.image && (
+                <div class="author-image">
+                  <img src={testimonial.image} alt={testimonial.author} />
+                </div>
+              )}
+              <div class="author-details">
+                <h4 class="author-name">{testimonial.author}</h4>
+                <p class="author-position">{testimonial.position}, {testimonial.company}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="slider-controls">
+        <button class="prev-button" id="prevButton" aria-label="Previous testimonial">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <div class="slider-dots" id="sliderDots">
+          {testimonials.map((_, index) => (
+            <button class={`dot ${index === 0 ? 'active' : ''}`} data-index={index} aria-label={`Go to testimonial ${index + 1}`}></button>
+          ))}
+        </div>
+        <button class="next-button" id="nextButton" aria-label="Next testimonial">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slider = document.getElementById('testimonialSlider');
+    const slides = slider.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+    
+    // Initialize autoplay timer
+    let autoplayTimer = setInterval(nextSlide, 5000);
+    
+    // Function to show a specific slide
+    function showSlide(index) {
+      // Remove active class from all slides and dots
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      // Add active class to current slide and dot
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      
+      // Update current index
+      currentIndex = index;
+      
+      // Reset autoplay timer
+      clearInterval(autoplayTimer);
+      autoplayTimer = setInterval(nextSlide, 5000);
+    }
+    
+    // Function to go to next slide
+    function nextSlide() {
+      let newIndex = currentIndex + 1;
+      if (newIndex >= totalSlides) {
+        newIndex = 0;
+      }
+      showSlide(newIndex);
+    }
+    
+    // Function to go to previous slide
+    function prevSlide() {
+      let newIndex = currentIndex - 1;
+      if (newIndex < 0) {
+        newIndex = totalSlides - 1;
+      }
+      showSlide(newIndex);
+    }
+    
+    // Event listeners
+    prevButton.addEventListener('click', prevSlide);
+    nextButton.addEventListener('click', nextSlide);
+    
+    // Add event listeners to dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        showSlide(index);
+      });
+    });
+    
+    // Pause autoplay on hover
+    slider.addEventListener('mouseenter', () => {
+      clearInterval(autoplayTimer);
+    });
+    
+    // Resume autoplay on mouse leave
+    slider.addEventListener('mouseleave', () => {
+      autoplayTimer = setInterval(nextSlide, 5000);
+    });
+  });
+</script>
+
+<style>
+  .testimonial-slider {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .slider-container {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  
+  .slider {
+    position: relative;
+    min-height: 300px;
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    text-align: center;
+    padding: 0 1rem;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  
+  .slide.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+  }
+  
+  .quote-icon {
+    font-size: 2rem;
+    color: var(--color-teal);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+  
+  .quote {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  
+  .author-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .author-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .author-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .author-details {
+    text-align: left;
+  }
+  
+  .author-name {
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    margin-bottom: 0.25rem;
+  }
+  
+  .author-position {
+    font-size: 0.9rem;
+    color: #666;
+  }
+  
+  .slider-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .prev-button, .next-button {
+    background: transparent;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #666;
+  }
+  
+  .prev-button:hover, .next-button:hover {
+    background-color: var(--color-teal);
+    color: white;
+    border-color: var(--color-teal);
+  }
+  
+  .slider-dots {
+    display: flex;
+    gap: 0.5rem;
+    margin: 0 1rem;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .dot.active, .dot:hover {
+    background-color: var(--color-teal);
+  }
+  
+  @media (max-width: 768px) {
+    .quote {
+      font-size: 1rem;
+    }
+    
+    .author-info {
+      flex-direction: column;
+    }
+    
+    .author-details {
+      text-align: center;
+    }
+  }
+</style>

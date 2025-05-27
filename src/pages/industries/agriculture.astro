@@ -1,0 +1,699 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import ImageTextLeft from '../../components/sections/ImageTextLeft.astro';
+import FeatureCard from '../../components/common/FeatureCard.astro';
+import Specifications from '../../components/sections/Specifications.astro';
+import TestimonialSlider from '../../components/sections/TestimonialSlider.astro';
+import CallToAction from '../../components/sections/CallToAction.astro';
+import BlogCard from '../../components/common/BlogCard.astro';
+import FAQAccordion from '../../components/sections/FAQAccordion.astro';
+
+// Sample data for agriculture solutions
+const agricultureFeatures = [
+  {
+    title: "Crop Health Monitoring",
+    description: "Detect plant stress, disease, and pest issues before they become visible to the naked eye",
+    icon: "fa-solid fa-seedling",
+    url: "/products/agriculture/crop-health"
+  },
+  {
+    title: "Irrigation Management",
+    description: "Optimize water usage by identifying dry zones and monitoring moisture levels",
+    icon: "fa-solid fa-droplet",
+    url: "/products/agriculture/irrigation"
+  },
+  {
+    title: "Yield Estimation",
+    description: "Predict harvest volumes with AI-powered analysis of multispectral imagery",
+    icon: "fa-solid fa-chart-line",
+    url: "/products/agriculture/yield-estimation"
+  },
+  {
+    title: "Variable Rate Application",
+    description: "Create precise application maps for fertilizers and crop protection products",
+    icon: "fa-solid fa-spray-can",
+    url: "/products/agriculture/variable-rate"
+  }
+];
+
+// Sample specifications for agriculture solution
+const agricultureSpecs = [
+  {
+    title: "Data Collection",
+    features: [
+      "RGB Imagery: 42MP Sony sensor",
+      "Multispectral: 5-band with calibration panel",
+      "Hyperspectral: Optional 150-band sensor",
+      "Thermal: 640×512 radiometric thermal",
+      "Data Collection Rate: 80-100 hectares/hour",
+      "Ground Sample Distance: Down to 1cm/pixel"
+    ]
+  },
+  {
+    title: "Analytics & Outputs",
+    features: [
+      "NDVI, NDRE, and custom vegetation indices",
+      "Crop stress detection algorithms",
+      "AI-powered pest and disease identification",
+      "Prescription map generation",
+      "Yield prediction models",
+      "Integration with major farm management systems"
+    ]
+  }
+];
+
+// Sample testimonials from agricultural customers
+const testimonials = [
+  {
+    quote: "Implementing Astradeis technology allowed us to reduce our fertilizer use by 22% while maintaining yield. The ROI was clear after just one growing season.",
+    author: "James Peterson",
+    position: "Operations Manager",
+    company: "Heartland Farms"
+  },
+  {
+    quote: "The early detection of disease pressure saved our vineyard from what could have been a devastating outbreak. The detailed maps helped us target our spraying to just the affected areas.",
+    author: "Maria Rodriguez",
+    position: "Vineyard Manager",
+    company: "Sonoma Valley Vineyards"
+  },
+  {
+    quote: "As a precision ag consultant, I've worked with many drone systems. Astradeis stands out for data quality and the actionable insights their software provides.",
+    author: "Robert Chen",
+    position: "Precision Agriculture Specialist",
+    company: "AgriTech Solutions"
+  }
+];
+
+// Sample FAQs specific to agriculture
+const faqs = [
+  {
+    question: "How often should we fly the drone for optimal crop monitoring?",
+    answer: "For most crops, we recommend bi-weekly flights during critical growth stages. For high-value crops or during periods of stress (drought, disease pressure), weekly monitoring provides the best results. Our agronomists can help develop a custom flight schedule based on your specific crops and growing conditions."
+  },
+  {
+    question: "Can your system integrate with our existing farm management software?",
+    answer: "Yes, our platform offers API connections to all major farm management systems including John Deere Operations Center, Climate FieldView, Trimble Ag Software, and many others. We can also export data in standard formats (shapefile, GeoTIFF) for manual import into any system."
+  },
+  {
+    question: "What's the difference between NDVI and the other vegetation indices you offer?",
+    answer: "While NDVI (Normalized Difference Vegetation Index) is the most common index for assessing plant health, it can saturate in dense canopies. We offer additional indices like NDRE (Normalized Difference Red Edge) which is more sensitive to chlorophyll content variations in mature crops, and several custom indices optimized for specific crops and conditions."
+  },
+  {
+    question: "How accurate are the yield predictions?",
+    answer: "Our yield prediction models typically achieve 85-95% accuracy when calibrated with historical farm data. The accuracy improves over time as the system learns from your specific fields and conditions. We recommend running multiple assessments throughout the growing season for the most reliable predictions."
+  },
+  {
+    question: "Can your technology help with organic farming practices?",
+    answer: "Absolutely. Our technology is particularly valuable for organic operations by enabling early detection of pest and disease pressure when control options are still viable. The ability to target interventions precisely also reduces the overall use of even organic inputs, improving sustainability and reducing costs."
+  }
+];
+
+// Related blog posts specific to agriculture
+const relatedPosts = [
+  {
+    title: "5 Ways Multispectral Imaging is Transforming Pest Management",
+    excerpt: "Early detection and targeted treatment strategies are changing how farms manage pest pressure while reducing chemical usage.",
+    image: "/images/blog/multispectral-pest-management.jpg",
+    date: "2024-03-25",
+    author: "Sarah Johnson",
+    url: "/blog/multispectral-imaging-pest-management",
+    categories: ["Agriculture", "Technology"]
+  },
+  {
+    title: "Case Study: Water Savings in Almond Orchards Using Thermal Imagery",
+    excerpt: "How a California almond producer reduced irrigation water usage by 30% while maintaining yield and quality.",
+    image: "/images/blog/almond-irrigation-case-study.jpg",
+    date: "2024-02-12",
+    author: "Michael Chen",
+    url: "/blog/almond-irrigation-case-study",
+    categories: ["Agriculture", "Case Study"]
+  },
+  {
+    title: "Understanding Nitrogen Efficiency with Advanced Remote Sensing",
+    excerpt: "New approaches to nitrogen management using drone-based sensors for optimal application timing and rates.",
+    image: "/images/blog/nitrogen-sensing.jpg",
+    date: "2024-01-18",
+    author: "Emma Rodriguez",
+    url: "/blog/nitrogen-efficiency-remote-sensing",
+    categories: ["Agriculture", "Research"]
+  }
+];
+---
+
+<BaseLayout 
+  title="Agricultural Drone Solutions" 
+  description="Advanced drone technology for precision agriculture, crop monitoring, and farm management optimization."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Precision Agriculture Solutions" 
+    subtitle="Optimize resources, maximize yield, and improve sustainability with data-driven insights"
+    backgroundImage="/images/industries/agriculture-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact?service=agriculture" class="btn primary-btn">Request a Consultation</a>
+      <a href="#case-studies" class="btn secondary-btn">View Case Studies</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Industry Introduction -->
+  <section class="industry-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Transform Your Agricultural Operations</h2>
+        <p>Modern agriculture faces complex challenges: optimizing inputs, managing variability, and adapting to changing conditions—all while maintaining profitability and sustainability. Astradeis agricultural solutions provide the detailed insights you need to make data-driven decisions with confidence.</p>
+        
+        <p>Our end-to-end system combines advanced drone technology, multispectral and thermal sensors, and AI-powered analytics to deliver actionable information that drives real results in the field. From large-scale row crop operations to specialty crops and everything in between, we provide solutions tailored to your specific needs.</p>
+      </div>
+      
+      <div class="intro-stats">
+        <div class="stat-item">
+          <span class="stat-number">22%</span>
+          <span class="stat-label">Average input reduction</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">18%</span>
+          <span class="stat-label">Typical yield increase</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">3x</span>
+          <span class="stat-label">ROI in first season</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Key Applications -->
+  <section class="applications-section">
+    <div class="container">
+      <h2 class="section-title">Key Applications</h2>
+      <p class="section-subtitle">Comprehensive solutions for modern agricultural challenges</p>
+      
+      <div class="features-grid">
+        {agricultureFeatures.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            url={feature.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Case Study Highlight -->
+  <section id="case-studies" class="case-study">
+    <div class="container">
+      <div class="case-content">
+        <div class="case-tag">CASE STUDY</div>
+        <h2>30% Water Reduction in Almond Orchards</h2>
+        <p>A leading California almond producer faced increasing water costs and allocation restrictions. Using our thermal and multispectral imaging system, they identified irrigation inefficiencies and stress patterns across 1,200 acres of orchards.</p>
+        
+        <ul class="case-results">
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>30% reduction in total water usage</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Early detection of irrigation system failures</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Maintained yield and quality metrics</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>$215,000 annual savings in water costs</span>
+          </li>
+        </ul>
+        
+        <a href="/case-studies/almond-water-optimization" class="case-link">Read the full case study</a>
+      </div>
+      
+      <div class="case-image">
+        <img src="/images/case-studies/almond-irrigation-map.jpg" alt="Thermal map showing irrigation patterns in almond orchard" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Our end-to-end process delivers actionable insights from field to decision</p>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-number">1</div>
+          <h3>Data Acquisition</h3>
+          <p>Our specialized agricultural drones capture high-resolution RGB, multispectral, and thermal imagery of your fields.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">2</div>
+          <h3>Processing & Analysis</h3>
+          <p>Advanced algorithms process the raw data to generate vegetation indices, detect anomalies, and identify patterns.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">3</div>
+          <h3>Insight Generation</h3>
+          <p>AI-powered analytics transform data into actionable insights specific to your crops and conditions.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-number">4</div>
+          <h3>Implementation</h3>
+          <p>Prescription maps and recommendations integrate directly with your equipment and farm management systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Specifications -->
+  <Specifications
+    title="Technical Specifications"
+    specifications={agricultureSpecs}
+  />
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="What Agricultural Professionals Say"
+    testimonials={testimonials}
+  />
+  
+  <!-- Compatible Crops -->
+  <section class="compatible-crops">
+    <div class="container">
+      <h2 class="section-title">Compatible Crops</h2>
+      <p class="section-subtitle">Our solutions are optimized for a wide range of crops and growing systems</p>
+      
+      <div class="crop-categories">
+        <div class="crop-category">
+          <h3>Row Crops</h3>
+          <ul class="crop-list">
+            <li>Corn</li>
+            <li>Soybeans</li>
+            <li>Wheat</li>
+            <li>Cotton</li>
+            <li>Canola</li>
+          </ul>
+        </div>
+        
+        <div class="crop-category">
+          <h3>Specialty Crops</h3>
+          <ul class="crop-list">
+            <li>Wine Grapes</li>
+            <li>Tree Fruits</li>
+            <li>Nuts</li>
+            <li>Berries</li>
+            <li>Vegetables</li>
+          </ul>
+        </div>
+        
+        <div class="crop-category">
+          <h3>Other Systems</h3>
+          <ul class="crop-list">
+            <li>Pasture & Rangeland</li>
+            <li>Turf</li>
+            <li>Sugarcane</li>
+            <li>Rice</li>
+            <li>Greenhouse Production</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Related Resources -->
+  <section class="related-resources">
+    <div class="container">
+      <h2 class="section-title">Related Resources</h2>
+      <p class="section-subtitle">Explore our latest articles and research on agricultural applications</p>
+      
+      <div class="blog-posts">
+        {relatedPosts.map(post => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            image={post.image}
+            date={post.date}
+            author={post.author}
+            url={post.url}
+            categories={post.categories}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Optimize Your Agricultural Operations?"
+    text="Schedule a consultation with our agricultural technology specialists to discuss your specific needs."
+    buttonText="Request a Demo"
+    buttonUrl="/contact?service=agriculture"
+    backgroundImage="/images/cta/agriculture-field.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .industry-intro {
+    padding: 4rem 0;
+  }
+  
+  .intro-content {
+    margin-bottom: 3rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+  }
+  
+  .intro-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  .applications-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .case-study {
+    padding: 4rem 0;
+    background-color: white;
+  }
+  
+  .case-study .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .case-content {
+    flex: 1;
+  }
+  
+  .case-image {
+    flex: 1;
+  }
+  
+  .case-tag {
+    display: inline-block;
+    background-color: var(--color-soft-yellow);
+    color: var(--color-charcoal-gray);
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .case-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .case-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .case-results {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .case-results li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .case-results i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  
+  .case-link {
+    display: inline-block;
+    color: var(--color-teal);
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .case-link:hover {
+    color: var(--color-teal-dark);
+  }
+  
+  .case-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .how-it-works {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .process-step {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 200px;
+    max-width: 250px;
+    position: relative;
+    text-align: center;
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-teal);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .process-step h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .compatible-crops {
+    padding: 4rem 0;
+  }
+  
+  .crop-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .crop-category {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--color-light-gray);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .crop-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-teal);
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .crop-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .crop-list li {
+    padding: 0.5rem 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .crop-list li:last-child {
+    border-bottom: none;
+  }
+  
+  .related-resources {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  @media (max-width: 992px) {
+    .case-study .container {
+      flex-direction: column;
+    }
+    
+    .case-content, .case-image {
+      width: 100%;
+    }
+    
+    .process-steps {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .process-step {
+      max-width: 100%;
+    }
+    
+    .blog-posts {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .intro-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>

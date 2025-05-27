@@ -1,0 +1,115 @@
+---
+export interface Props {
+  title: string;
+  text: string;
+  linkUrl: string;
+  linkText: string;
+  leftImage: string;
+  rightImage: string;
+  leftImageAlt: string;
+  rightImageAlt: string;
+}
+
+const {
+  title,
+  text,
+  linkUrl,
+  linkText,
+  leftImage,
+  rightImage,
+  leftImageAlt,
+  rightImageAlt
+} = Astro.props;
+---
+
+<section class="two-image-text-block">
+  <h2 class="section-title">{title}</h2>
+  <div class="content-wrapper">
+    <div class="image-container">
+      <img src={leftImage} alt={leftImageAlt} />
+    </div>
+    <a href={linkUrl} class="text-container">
+      <div class="text-content">
+        <p>{text}</p>
+        <span class="link-text">{linkText}</span>
+      </div>
+    </a>
+    <div class="image-container">
+      <img src={rightImage} alt={rightImageAlt} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .two-image-text-block {
+    margin: 4rem 0;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .content-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .image-container, .text-container {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-light-gray);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .text-container:hover {
+    background-color: var(--color-soft-yellow);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-content {
+    text-align: center;
+  }
+  
+  .link-text {
+    display: block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--color-teal);
+  }
+  
+  @media (max-width: 992px) {
+    .content-wrapper {
+      flex-direction: column;
+    }
+    
+    .image-container, .text-container {
+      width: 100%;
+    }
+  }
+</style>
