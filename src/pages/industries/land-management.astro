@@ -1,0 +1,891 @@
+<!-- src/pages/industries/land-management.astro -->
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import FeatureCard from '../../components/common/FeatureCard.astro';
+import Specifications from '../../components/sections/Specifications.astro';
+import TestimonialSlider from '../../components/sections/TestimonialSlider.astro';
+import CallToAction from '../../components/sections/CallToAction.astro';
+import FAQAccordion from '../../components/sections/FAQAccordion.astro';
+import BlogCard from '../../components/common/BlogCard.astro';
+
+// Land management solutions features
+const landManagementFeatures = [
+  {
+    title: "Terrain Analysis & Mapping",
+    description: "High-precision topographic surveys and digital elevation models for land development and planning",
+    icon: "fa-solid fa-mountain",
+    url: "/products/land-management/terrain-analysis"
+  },
+  {
+    title: "Vegetation Monitoring",
+    description: "Track vegetation health, growth patterns, and changes over time using multispectral imaging",
+    icon: "fa-solid fa-tree",
+    url: "/products/land-management/vegetation-monitoring"
+  },
+  {
+    title: "Boundary & Property Surveys",
+    description: "Accurate property line determination and boundary mapping with GPS-corrected precision",
+    icon: "fa-solid fa-map-marked-alt",
+    url: "/products/land-management/boundary-surveys"
+  },
+  {
+    title: "Infrastructure Assessment",
+    description: "Inspection and monitoring of roads, fences, utilities, and other land-based infrastructure",
+    icon: "fa-solid fa-road",
+    url: "/products/land-management/infrastructure-assessment"
+  },
+  {
+    title: "Water Resource Management",
+    description: "Monitor waterways, drainage patterns, flood zones, and irrigation systems effectiveness",
+    icon: "fa-solid fa-water",
+    url: "/products/land-management/water-resources"
+  },
+  {
+    title: "Land Use Planning",
+    description: "Comprehensive land use analysis and planning support with detailed spatial data",
+    icon: "fa-solid fa-drafting-compass",
+    url: "/products/land-management/land-use-planning"
+  }
+];
+
+// Land management specifications
+const landManagementSpecs = [
+  {
+    title: "Survey Accuracy",
+    features: [
+      "Horizontal Accuracy: ±3cm with RTK GPS",
+      "Vertical Accuracy: ±2cm for elevation models",
+      "Ground Sample Distance: Down to 1cm/pixel",
+      "Coverage Area: Up to 2000 hectares per flight",
+      "Point Cloud Density: >300 points/m²",
+      "Coordinate Systems: Any local or global datum"
+    ]
+  },
+  {
+    title: "Data Collection",
+    features: [
+      "RGB Imagery: Ultra-high resolution for detailed mapping",
+      "LiDAR Scanning: Penetrates vegetation canopy",
+      "Multispectral: Vegetation health analysis",
+      "Thermal Imaging: Heat mapping and moisture detection",
+      "Real-time Processing: Field validation capabilities",
+      "Weather Independence: Operates in various conditions"
+    ]
+  },
+  {
+    title: "Deliverables",
+    features: [
+      "Digital Elevation Models (DEM)",
+      "Contour maps at any interval",
+      "Orthomosaic imagery",
+      "3D point clouds and meshes",
+      "CAD-ready boundary files",
+      "GIS-compatible data formats"
+    ]
+  }
+];
+
+// Land management testimonials
+const testimonials = [
+  {
+    quote: "Astradeis has transformed how we approach large-scale land surveys. What used to take months with traditional methods now takes days, with significantly better accuracy and detail.",
+    author: "Jennifer Morrison",
+    position: "Senior Land Surveyor",
+    company: "Territory Survey Solutions"
+  },
+  {
+    quote: "The vegetation monitoring capabilities have been invaluable for our conservation projects. We can track habitat changes and restoration progress with unprecedented detail and frequency.",
+    author: "Dr. Alan Fletcher",
+    position: "Conservation Manager",
+    company: "National Parks Authority"
+  },
+  {
+    quote: "For our rural property management clients, the comprehensive land analysis data helps optimize everything from grazing patterns to infrastructure development.",
+    author: "Sarah Chen",
+    position: "Rural Property Consultant",
+    company: "Agricultural Land Services"
+  }
+];
+
+// Land management FAQs
+const faqs = [
+  {
+    question: "How accurate are drone surveys compared to traditional land surveying methods?",
+    answer: "Our drone surveys achieve comparable accuracy to traditional methods, with horizontal accuracy within ±3cm and vertical accuracy within ±2cm when using RTK GPS corrections. The key advantage is speed and coverage - we can survey large areas in hours rather than weeks, while providing the same professional-grade accuracy required for legal boundary determinations and engineering applications."
+  },
+  {
+    question: "Can drone surveys be used for legal boundary determinations?",
+    answer: "Yes, when conducted by licensed surveyors using proper procedures and equipment. Our surveys meet the accuracy standards required for legal boundary work in most jurisdictions. We work with licensed surveyors to ensure all legal requirements are met, including proper monumentation and documentation procedures."
+  },
+  {
+    question: "What types of terrain and vegetation can your systems handle?",
+    answer: "Our systems are designed to handle diverse terrain including dense forests, steep slopes, wetlands, and open plains. LiDAR sensors can penetrate vegetation canopy to map ground surfaces beneath, while multispectral sensors provide detailed vegetation analysis. We adapt our sensor configuration and flight parameters based on specific terrain and vegetation conditions."
+  },
+  {
+    question: "How do you ensure data accuracy in challenging weather conditions?",
+    answer: "We operate in various weather conditions but prioritize safety and data quality. Our systems include weather monitoring and can operate in light rain and moderate winds. For critical surveys, we use multiple validation techniques including ground control points, check points, and statistical analysis to ensure accuracy meets required standards regardless of conditions."
+  },
+  {
+    question: "What file formats and deliverables do you provide for land management projects?",
+    answer: "We provide comprehensive deliverables in industry-standard formats including DWG/DXF for CAD systems, GeoTIFF for GIS applications, LAS/LAZ point clouds, PDF maps and reports, and KML/KMZ for Google Earth. All data includes proper coordinate system information, metadata, and quality control documentation. We can customize outputs to match your specific software requirements and workflow needs."
+  }
+];
+
+// Related blog posts
+const relatedPosts = [
+  {
+    title: "Modern Land Surveying: How Drones Are Revolutionizing the Industry",
+    excerpt: "Exploring the transformation of traditional surveying practices through advanced drone technology and precision mapping.",
+    image: "/images/blog/land-surveying-drones.jpg",
+    date: "2024-03-20",
+    author: "Jennifer Morrison",
+    url: "/blog/modern-land-surveying-drones",
+    categories: ["Land Management", "Surveying"]
+  },
+  {
+    title: "Vegetation Monitoring for Conservation: A Data-Driven Approach",
+    excerpt: "How aerial monitoring technology is enabling more effective conservation strategies and habitat management.",
+    image: "/images/blog/vegetation-monitoring-conservation.jpg",
+    date: "2024-02-15",
+    author: "Dr. Alan Fletcher",
+    url: "/blog/vegetation-monitoring-conservation",
+    categories: ["Land Management", "Environmental"]
+  },
+  {
+    title: "The Economics of Large-Scale Property Surveys",
+    excerpt: "Cost-benefit analysis of drone-based surveying versus traditional methods for large rural and commercial properties.",
+    image: "/images/blog/property-survey-economics.jpg",
+    date: "2024-01-25",
+    author: "Sarah Chen",
+    url: "/blog/property-survey-economics",
+    categories: ["Land Management", "Business"]
+  }
+];
+---
+
+<BaseLayout 
+  title="Land Management Solutions" 
+  description="Comprehensive drone-based land management services including terrain analysis, vegetation monitoring, and property surveys."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Comprehensive Land Management Solutions" 
+    subtitle="Advanced aerial intelligence for property development, conservation, and land use optimization"
+    backgroundImage="/images/industries/land-management-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact?service=land-management" class="btn primary-btn">Request Consultation</a>
+      <a href="#applications" class="btn secondary-btn">View Applications</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Industry Introduction -->
+  <section class="industry-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Intelligent Land Management Through Aerial Technology</h2>
+        <p>Effective land management requires comprehensive, accurate, and up-to-date information about terrain, vegetation, infrastructure, and environmental conditions. Astradeis land management solutions provide the detailed spatial intelligence needed to make informed decisions about land use, development, conservation, and resource management.</p>
+        
+        <p>Our advanced drone systems and analytical capabilities deliver the precision and coverage necessary for professional land management, whether you're managing thousands of hectares of rural property, planning urban development, or conducting environmental conservation work.</p>
+      </div>
+      
+      <div class="intro-stats">
+        <div class="stat-item">
+          <span class="stat-number">3cm</span>
+          <span class="stat-label">Survey accuracy</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">80%</span>
+          <span class="stat-label">Faster than traditional methods</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2000ha</span>
+          <span class="stat-label">Coverage per flight</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Key Applications -->
+  <section id="applications" class="applications-section">
+    <div class="container">
+      <h2 class="section-title">Land Management Applications</h2>
+      <p class="section-subtitle">Comprehensive solutions for diverse land management challenges</p>
+      
+      <div class="features-grid">
+        {landManagementFeatures.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            url={feature.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Use Case Highlight -->
+  <section class="use-case-highlight">
+    <div class="container">
+      <div class="case-content">
+        <div class="case-tag">SUCCESS STORY</div>
+        <h2>50,000 Hectare Ranch Management Optimization</h2>
+        <p>A large cattle station in Queensland engaged Astradeis to conduct comprehensive land assessment across their 50,000-hectare property. The project included terrain mapping, vegetation analysis, water resource assessment, and infrastructure monitoring to optimize grazing management and property development.</p>
+        
+        <ul class="case-results">
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Complete property mapping in 5 days vs 6 months traditional methods</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Identified 12% more usable grazing area than previously known</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Optimized water point placement reducing cattle travel by 30%</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>$450,000 annual improvement in operational efficiency</span>
+          </li>
+        </ul>
+        
+        <a href="/case-studies/ranch-management-optimization" class="case-link">Read the full success story</a>
+      </div>
+      
+      <div class="case-image">
+        <img src="/images/case-studies/ranch-terrain-mapping.jpg" alt="Digital elevation model of large ranch property" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Survey Process -->
+  <section class="survey-process">
+    <div class="container">
+      <h2 class="section-title">Our Land Survey Process</h2>
+      <p class="section-subtitle">Professional methodology ensuring accuracy and reliability</p>
+      
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="fa-solid fa-clipboard-check"></i>
+          </div>
+          <h3>Planning & Preparation</h3>
+          <p>Site assessment, flight planning, and ground control point establishment for optimal accuracy.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="fa-solid fa-drone"></i>
+          </div>
+          <h3>Data Collection</h3>
+          <p>Systematic aerial surveys using calibrated sensors and professional-grade positioning systems.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+          <h3>Processing & Analysis</h3>
+          <p>Advanced photogrammetric processing and quality control to generate accurate spatial products.</p>
+        </div>
+        
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="fa-solid fa-file-chart-column"></i>
+          </div>
+          <h3>Delivery & Support</h3>
+          <p>Comprehensive deliverables package with ongoing support and consultation as needed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Specifications -->
+  <Specifications
+    title="Technical Capabilities"
+    specifications={landManagementSpecs}
+  />
+  
+  <!-- Land Management Types -->
+  <section class="management-types">
+    <div class="container">
+      <h2 class="section-title">Land Management Applications</h2>
+      <p class="section-subtitle">Our solutions serve diverse land management needs</p>
+      
+      <div class="types-grid">
+        <div class="management-type">
+          <div class="type-icon">
+            <i class="fa-solid fa-tractor"></i>
+          </div>
+          <h3>Agricultural Land</h3>
+          <ul class="type-features">
+            <li>Farm boundary surveys</li>
+            <li>Field drainage analysis</li>
+            <li>Soil variation mapping</li>
+            <li>Irrigation system assessment</li>
+            <li>Crop rotation planning</li>
+          </ul>
+        </div>
+        
+        <div class="management-type">
+          <div class="type-icon">
+            <i class="fa-solid fa-city"></i>
+          </div>
+          <h3>Urban Development</h3>
+          <ul class="type-features">
+            <li>Site feasibility studies</li>
+            <li>Subdivision planning</li>
+            <li>Infrastructure assessment</li>
+            <li>Stormwater management</li>
+            <li>Zoning compliance</li>
+          </ul>
+        </div>
+        
+        <div class="management-type">
+          <div class="type-icon">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3>Conservation Areas</h3>
+          <ul class="type-features">
+            <li>Habitat monitoring</li>
+            <li>Restoration tracking</li>
+            <li>Invasive species mapping</li>
+            <li>Wildlife corridor planning</li>
+            <li>Biodiversity assessment</li>
+          </ul>
+        </div>
+        
+        <div class="management-type">
+          <div class="type-icon">
+            <i class="fa-solid fa-industry"></i>
+          </div>
+          <h3>Industrial Properties</h3>
+          <ul class="type-features">
+            <li>Facility planning</li>
+            <li>Environmental compliance</li>
+            <li>Asset management</li>
+            <li>Safety zone mapping</li>
+            <li>Expansion planning</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technology Integration -->
+  <section class="technology-integration">
+    <div class="container">
+      <div class="integration-content">
+        <h2>Seamless Technology Integration</h2>
+        <p>Our land management solutions integrate with leading GIS, CAD, and land management software platforms to ensure your data flows seamlessly into existing workflows.</p>
+        
+        <div class="software-grid">
+          <div class="software-category">
+            <h3>GIS Platforms</h3>
+            <div class="software-items">
+              <span class="software-item">ArcGIS Pro</span>
+              <span class="software-item">QGIS</span>
+              <span class="software-item">MapInfo</span>
+              <span class="software-item">Global Mapper</span>
+            </div>
+          </div>
+          
+          <div class="software-category">
+            <h3>CAD Systems</h3>
+            <div class="software-items">
+              <span class="software-item">AutoCAD Civil 3D</span>
+              <span class="software-item">MicroStation</span>
+              <span class="software-item">Carlson Survey</span>
+              <span class="software-item">TerraModel</span>
+            </div>
+          </div>
+          
+          <div class="software-category">
+            <h3>Planning Software</h3>
+            <div class="software-items">
+              <span class="software-item">SketchUp</span>
+              <span class="software-item">Rhino</span>
+              <span class="software-item">Lumion</span>
+              <span class="software-item">CityEngine</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="What Land Management Professionals Say"
+    testimonials={testimonials}
+  />
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Related Resources -->
+  <section class="related-resources">
+    <div class="container">
+      <h2 class="section-title">Related Resources</h2>
+      <p class="section-subtitle">Explore our latest insights on land management technology</p>
+      
+      <div class="blog-posts">
+        {relatedPosts.map(post => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            image={post.image}
+            date={post.date}
+            author={post.author}
+            url={post.url}
+            categories={post.categories}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Optimize Your Land Management?"
+    text="Schedule a consultation with our land management specialists to discuss your property assessment and planning needs."
+    buttonText="Schedule Assessment"
+    buttonUrl="/contact?service=land-assessment"
+    backgroundImage="/images/cta/land-management-aerial.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Industry Introduction */
+  .industry-intro {
+    padding: 4rem 0;
+  }
+  
+  .intro-content {
+    margin-bottom: 3rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+    text-align: center;
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .intro-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Applications Section */
+  .applications-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Use Case Highlight */
+  .use-case-highlight {
+    padding: 4rem 0;
+    background-color: white;
+  }
+  
+  .use-case-highlight .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .case-content {
+    flex: 1;
+  }
+  
+  .case-image {
+    flex: 1;
+  }
+  
+  .case-tag {
+    display: inline-block;
+    background-color: var(--color-soft-yellow);
+    color: var(--color-charcoal-gray);
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .case-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .case-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .case-results {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .case-results li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .case-results i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  
+  .case-link {
+    display: inline-block;
+    color: var(--color-teal);
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .case-link:hover {
+    color: var(--color-teal-dark);
+  }
+  
+  .case-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Survey Process */
+  .survey-process {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .process-step {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .process-step:hover {
+    transform: translateY(-5px);
+  }
+  
+  .step-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--color-teal);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .process-step:hover .step-icon {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .process-step h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .process-step p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Management Types */
+  .management-types {
+    padding: 4rem 0;
+  }
+  
+  .types-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .management-type {
+    background-color: var(--color-soft-white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .management-type:hover {
+    transform: translateY(-5px);
+  }
+  
+  .type-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .management-type h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .type-features {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .type-features li {
+    padding: 0.5rem 0;
+    color: #666;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .type-features li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Technology Integration */
+  .technology-integration {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .integration-content h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .integration-content p {
+    text-align: center;
+    color: #444;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .software-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .software-category {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .software-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    border-bottom: 2px solid var(--color-teal);
+    padding-bottom: 0.5rem;
+  }
+  
+  .software-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+  
+  .software-item {
+    background-color: var(--color-light-gray);
+    color: var(--color-charcoal-gray);
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  /* Related Resources */
+  .related-resources {
+    padding: 4rem 0;
+  }
+  
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .use-case-highlight .container {
+      flex-direction: column;
+    }
+    
+    .case-content, .case-image {
+      width: 100%;
+    }
+    
+    .case-image {
+      margin-top: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .intro-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .features-grid,
+    .process-steps,
+    .types-grid,
+    .software-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-posts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

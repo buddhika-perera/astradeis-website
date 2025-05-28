@@ -1,0 +1,319 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const pageData = {
+  title: "Quick Start Guides",
+  description: "Step-by-step tutorials to get you started with Astradeis solutions. From basic setup to advanced configurations, we've got you covered.",
+  heroTitle: "Quick Start Guides",
+  heroSubtitle: "Get up and running quickly with our comprehensive step-by-step tutorials",
+  heroImage: "/images/hero/guides-hero.jpg"
+};
+---
+
+<PageLayout {...pageData}>
+  <main class="py-16">
+    <!-- Introduction Section -->
+    <section class="container mx-auto px-6 mb-16">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Everything You Need to Get Started</h2>
+        <p class="text-xl text-gray-600 leading-relaxed">
+          Whether you're new to our platform or looking to implement advanced features, 
+          our quick start guides will help you achieve your goals efficiently.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter/Category Navigation -->
+    <section class="container mx-auto px-6 mb-12">
+      <div class="flex flex-wrap justify-center gap-4 mb-8">
+        <button class="guide-filter active px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors" data-category="all">
+          All Guides
+        </button>
+        <button class="guide-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors" data-category="beginner">
+          Beginner
+        </button>
+        <button class="guide-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors" data-category="intermediate">
+          Intermediate
+        </button>
+        <button class="guide-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors" data-category="advanced">
+          Advanced
+        </button>
+        <button class="guide-filter px-6 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition-colors" data-category="integration">
+          Integration
+        </button>
+      </div>
+    </section>
+
+    <!-- Guides Grid -->
+    <section class="container mx-auto px-6 mb-16">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Guide 1: Getting Started -->
+        <div class="guide-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden" data-category="beginner">
+          <div class="bg-gradient-to-r from-blue-500 to-purple-600 h-2"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Beginner</span>
+              <span class="text-sm text-gray-500">15 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Getting Started with Astradeis</h3>
+            <p class="text-gray-600 mb-4">
+              Your first steps to setting up and configuring your Astradeis account. Learn the basics and get your workspace ready.
+            </p>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-800 mb-2">What you'll learn:</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• Account setup and verification</li>
+                <li>• Dashboard navigation</li>
+                <li>• Basic configuration settings</li>
+                <li>• First project creation</li>
+              </ul>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Start Guide
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide 2: API Integration -->
+        <div class="guide-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden" data-category="integration">
+          <div class="bg-gradient-to-r from-green-500 to-teal-600 h-2"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Integration</span>
+              <span class="text-sm text-gray-500">25 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">API Integration Guide</h3>
+            <p class="text-gray-600 mb-4">
+              Connect your applications with Astradeis APIs. Complete with code examples and best practices.
+            </p>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-800 mb-2">What you'll learn:</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• API authentication setup</li>
+                <li>• Making your first API call</li>
+                <li>• Error handling and retries</li>
+                <li>• Rate limiting and optimization</li>
+              </ul>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Start Guide
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide 3: Data Migration -->
+        <div class="guide-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden" data-category="intermediate">
+          <div class="bg-gradient-to-r from-orange-500 to-red-600 h-2"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">Intermediate</span>
+              <span class="text-sm text-gray-500">35 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Data Migration Made Easy</h3>
+            <p class="text-gray-600 mb-4">
+              Seamlessly migrate your existing data to Astradeis platform with our comprehensive migration tools.
+            </p>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-800 mb-2">What you'll learn:</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• Pre-migration assessment</li>
+                <li>• Data mapping and transformation</li>
+                <li>• Migration execution steps</li>
+                <li>• Post-migration validation</li>
+              </ul>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Start Guide
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide 4: Security Setup -->
+        <div class="guide-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden" data-category="intermediate">
+          <div class="bg-gradient-to-r from-purple-500 to-pink-600 h-2"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-3 py-1 rounded-full">Intermediate</span>
+              <span class="text-sm text-gray-500">20 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Security & Compliance Setup</h3>
+            <p class="text-gray-600 mb-4">
+              Implement robust security measures and ensure compliance with industry standards and regulations.
+            </p>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-800 mb-2">What you'll learn:</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• Multi-factor authentication</li>
+                <li>• Role-based access control</li>
+                <li>• Audit logging configuration</li>
+                <li>• Compliance reporting</li>
+              </ul>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Start Guide
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide 5: Advanced Analytics -->
+        <div class="guide-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden" data-category="advanced">
+          <div class="bg-gradient-to-r from-indigo-500 to-blue-600 h-2"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-red-100 text-red-800 text-xs font-semibold px-3 py-1 rounded-full">Advanced</span>
+              <span class="text-sm text-gray-500">45 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Advanced Analytics & Reporting</h3>
+            <p class="text-gray-600 mb-4">
+              Unlock powerful insights with advanced analytics tools and create custom reports for your business needs.
+            </p>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-800 mb-2">What you'll learn:</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• Custom dashboard creation</li>
+                <li>• Advanced query techniques</li>
+                <li>• Automated report scheduling</li>
+                <li>• Data visualization best practices</li>
+              </ul>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Start Guide
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide 6: Mobile App Setup -->
+        <div class="guide-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden" data-category="beginner">
+          <div class="bg-gradient-to-r from-teal-500 to-green-600 h-2"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Beginner</span>
+              <span class="text-sm text-gray-500">10 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Mobile App Configuration</h3>
+            <p class="text-gray-600 mb-4">
+              Set up and configure the Astradeis mobile application for on-the-go access to your data and tools.
+            </p>
+            <div class="mb-4">
+              <h4 class="font-semibold text-gray-800 mb-2">What you'll learn:</h4>
+              <ul class="text-sm text-gray-600 space-y-1">
+                <li>• App installation and setup</li>
+                <li>• Account synchronization</li>
+                <li>• Mobile-specific features</li>
+                <li>• Offline mode configuration</li>
+              </ul>
+            </div>
+            <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Start Guide
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Popular Resources Section -->
+    <section class="container mx-auto px-6 mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Popular Resources</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Documentation</h3>
+          <p class="text-sm text-gray-600">Comprehensive API and feature documentation</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Support Center</h3>
+          <p class="text-sm text-gray-600">Get help from our expert support team</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Video Tutorials</h3>
+          <p class="text-sm text-gray-600">Step-by-step video guides and demos</p>
+        </div>
+        <div class="text-center p-6 bg-gray-50 rounded-xl hover:bg-gray-100 transition-colors">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+            </svg>
+          </div>
+          <h3 class="font-semibold text-gray-900 mb-2">Community</h3>
+          <p class="text-sm text-gray-600">Connect with other Astradeis users</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="container mx-auto px-6">
+      <div class="text-center bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white">
+        <h2 class="text-3xl font-bold mb-4">Need Personalized Help?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Our expert team is ready to help you succeed with customized onboarding and training sessions.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Schedule Consultation
+          </a>
+          <a href="/resources/knowledge-base" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            Browse Knowledge Base
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Filter functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const filterButtons = document.querySelectorAll('.guide-filter');
+      const guideCards = document.querySelectorAll('.guide-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          
+          // Update active button
+          filterButtons.forEach(btn => {
+            btn.classList.remove('active', 'bg-blue-600', 'text-white');
+            btn.classList.add('bg-gray-200', 'text-gray-700');
+          });
+          this.classList.add('active', 'bg-blue-600', 'text-white');
+          this.classList.remove('bg-gray-200', 'text-gray-700');
+          
+          // Filter cards
+          guideCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+              card.style.display = 'block';
+              card.style.animation = 'fadeIn 0.3s ease-in';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+
+    // Add fadeIn animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</PageLayout>

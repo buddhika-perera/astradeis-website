@@ -1,0 +1,867 @@
+<!-- src/pages/industries/mining.astro -->
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import FeatureCard from '../../components/common/FeatureCard.astro';
+import Specifications from '../../components/sections/Specifications.astro';
+import TestimonialSlider from '../../components/sections/TestimonialSlider.astro';
+import CallToAction from '../../components/sections/CallToAction.astro';
+import FAQAccordion from '../../components/sections/FAQAccordion.astro';
+import BlogCard from '../../components/common/BlogCard.astro';
+
+// Mining solutions features
+const miningFeatures = [
+  {
+    title: "Stockpile Management",
+    description: "Accurate volumetric measurement and inventory tracking of material stockpiles with 98% precision",
+    icon: "fa-solid fa-mountain",
+    url: "/products/mining/stockpile-management"
+  },
+  {
+    title: "Pit Progression Mapping",
+    description: "Monitor excavation progress, slope stability, and plan optimization with regular aerial surveys",
+    icon: "fa-solid fa-map",
+    url: "/products/mining/pit-mapping"
+  },
+  {
+    title: "Environmental Compliance",
+    description: "Vegetation monitoring, dust analysis, and rehabilitation progress tracking for regulatory compliance",
+    icon: "fa-solid fa-leaf",
+    url: "/products/mining/environmental-compliance"
+  },
+  {
+    title: "Safety & Security Monitoring",
+    description: "Hazard identification, unauthorized access detection, and worker safety zone monitoring",
+    icon: "fa-solid fa-shield-alt",
+    url: "/products/mining/safety-monitoring"
+  },
+  {
+    title: "Infrastructure Inspection",
+    description: "Conveyor systems, haul roads, and facility inspection using thermal and high-resolution imaging",
+    icon: "fa-solid fa-tools",
+    url: "/products/mining/infrastructure-inspection"
+  },
+  {
+    title: "Exploration Support",
+    description: "Geological mapping, terrain analysis, and mineral detection using hyperspectral imaging",
+    icon: "fa-solid fa-search",
+    url: "/products/mining/exploration"
+  }
+];
+
+// Mining specifications
+const miningSpecs = [
+  {
+    title: "Volumetric Analysis",
+    features: [
+      "Accuracy: ±98% compared to traditional methods",
+      "Resolution: Sub-centimeter ground sampling",
+      "Coverage: Up to 1000 hectares per flight",
+      "Processing: Automated volume calculations",
+      "Reporting: Detailed cut/fill analysis",
+      "Integration: Compatible with mining software"
+    ]
+  },
+  {
+    title: "Environmental Monitoring",
+    features: [
+      "Multispectral imaging for vegetation analysis",
+      "Thermal sensors for dust and heat detection",
+      "Gas detection sensors for emissions monitoring",
+      "Change detection over time periods",
+      "Compliance reporting automation",
+      "Rehabilitation progress tracking"
+    ]
+  },
+  {
+    title: "Safety Applications",
+    features: [
+      "Real-time hazard identification",
+      "Restricted area monitoring",
+      "Equipment tracking and status",
+      "Emergency response support",
+      "Incident documentation",
+      "Risk assessment mapping"
+    ]
+  }
+];
+
+// Mining testimonials
+const testimonials = [
+  {
+    quote: "Astradeis has revolutionized our stockpile management. We've reduced inventory discrepancies by 85% and can now reconcile volumes in real-time instead of waiting weeks for traditional surveys.",
+    author: "Robert Mitchell",
+    position: "Operations Manager",
+    company: "Pinnacle Mining Corporation"
+  },
+  {
+    quote: "The environmental compliance capabilities have been a game-changer. We can proactively manage rehabilitation areas and provide real-time compliance reporting to regulators.",
+    author: "Dr. Linda Zhang",
+    position: "Environmental Manager",
+    company: "Northern Resources Ltd"
+  },
+  {
+    quote: "Safety monitoring from aerial platforms has given us visibility into areas that were previously difficult to assess. We've identified and mitigated several potential hazards before they became incidents.",
+    author: "Marcus Thompson",
+    position: "Health & Safety Director",
+    company: "Goldfield Operations"
+  }
+];
+
+// Mining FAQs
+const faqs = [
+  {
+    question: "How accurate are drone-based stockpile measurements compared to traditional surveying?",
+    answer: "Our drone-based volumetric measurements achieve 98-99% accuracy compared to traditional ground surveying methods. The key advantages are speed (hours vs weeks), safety (no personnel in hazardous areas), and frequency (can be done regularly rather than quarterly). We validate accuracy through ground truth measurements and provide detailed uncertainty analysis with each report."
+  },
+  {
+    question: "Can your systems operate in harsh mining environments?",
+    answer: "Yes, our equipment is specifically designed for mining operations. Our drones have IP54 weather protection, operate in temperatures from -20°C to 50°C, and can handle high winds and dusty conditions. We also provide ruggedized ground control systems and redundant communication links for reliable operation in remote locations."
+  },
+  {
+    question: "How do you ensure data security for sensitive mining operations?",
+    answer: "We implement enterprise-grade security measures including encrypted data transmission, secure cloud storage with access controls, and compliance with mining industry security standards. Data can be processed on-premises if required, and we provide detailed security documentation for your IT and security teams."
+  },
+  {
+    question: "What mining software platforms do you integrate with?",
+    answer: "We integrate with all major mining software platforms including MineSight, Surpac, Vulcan, Deswik, and Hexagon solutions. Our API allows custom integrations with proprietary systems, and we provide standard data exports in formats compatible with virtually any mining software."
+  },
+  {
+    question: "How often should aerial surveys be conducted for optimal mine management?",
+    answer: "Survey frequency depends on your operational needs. For active mining areas, we recommend weekly to bi-weekly flights for optimal inventory management and progress tracking. Environmental monitoring may require monthly surveys, while exploration areas might need quarterly coverage. We work with you to develop an optimal flight schedule based on your specific operational requirements and budget considerations."
+  }
+];
+
+// Related blog posts
+const relatedPosts = [
+  {
+    title: "Revolutionizing Mine Safety Through Aerial Monitoring Technology",
+    excerpt: "How advanced drone systems are transforming safety protocols and hazard identification in mining operations worldwide.",
+    image: "/images/blog/mining-safety-drones.jpg",
+    date: "2024-03-15",
+    author: "Marcus Thompson",
+    url: "/blog/mining-safety-aerial-monitoring",
+    categories: ["Mining", "Safety"]
+  },
+  {
+    title: "The ROI of Automated Stockpile Management in Mining",
+    excerpt: "Quantifying the financial benefits of drone-based inventory management versus traditional surveying methods.",
+    image: "/images/blog/stockpile-management-roi.jpg",
+    date: "2024-02-28",
+    author: "Robert Mitchell",
+    url: "/blog/stockpile-management-roi",
+    categories: ["Mining", "Business"]
+  },
+  {
+    title: "Environmental Compliance Made Simple with Drone Technology",
+    excerpt: "Streamlining regulatory reporting and rehabilitation monitoring through automated aerial data collection.",
+    image: "/images/blog/mining-environmental-compliance.jpg",
+    date: "2024-01-20",
+    author: "Dr. Linda Zhang",
+    url: "/blog/mining-environmental-compliance",
+    categories: ["Mining", "Environmental"]
+  }
+];
+---
+
+<BaseLayout 
+  title="Mining Industry Solutions" 
+  description="Advanced drone technology for mining operations including stockpile management, environmental compliance, and safety monitoring."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Mining Industry Intelligence" 
+    subtitle="Optimize operations, ensure compliance, and enhance safety with comprehensive aerial monitoring solutions"
+    backgroundImage="/images/industries/mining-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact?service=mining" class="btn primary-btn">Request Consultation</a>
+      <a href="#case-studies" class="btn secondary-btn">View Case Studies</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Industry Introduction -->
+  <section class="industry-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Transform Your Mining Operations</h2>
+        <p>Modern mining operations face complex challenges: accurate inventory management, environmental compliance, worker safety, and operational efficiency. Astradeis mining solutions provide the comprehensive aerial intelligence needed to address these challenges while reducing costs and improving outcomes.</p>
+        
+        <p>Our specialized drone systems and analytics platform deliver real-time insights that enable proactive decision-making, whether you're managing stockpiles, monitoring environmental conditions, or ensuring operational safety across your sites.</p>
+      </div>
+      
+      <div class="intro-stats">
+        <div class="stat-item">
+          <span class="stat-number">85%</span>
+          <span class="stat-label">Reduction in inventory discrepancies</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">60%</span>
+          <span class="stat-label">Faster compliance reporting</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">40%</span>
+          <span class="stat-label">Improvement in safety metrics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Key Applications -->
+  <section class="applications-section">
+    <div class="container">
+      <h2 class="section-title">Key Mining Applications</h2>
+      <p class="section-subtitle">Comprehensive solutions for modern mining challenges</p>
+      
+      <div class="features-grid">
+        {miningFeatures.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            url={feature.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Case Study Highlight -->
+  <section id="case-studies" class="case-study">
+    <div class="container">
+      <div class="case-content">
+        <div class="case-tag">CASE STUDY</div>
+        <h2>Major Gold Mine Saves $2.3M Annually</h2>
+        <p>A large-scale gold mining operation in Western Australia implemented our comprehensive aerial monitoring system across their 5,000-hectare site. The integration of automated stockpile management, environmental monitoring, and safety systems delivered significant operational improvements.</p>
+        
+        <ul class="case-results">
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>$2.3M annual savings through accurate inventory management</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>75% reduction in environmental compliance reporting time</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Zero safety incidents in monitored high-risk areas</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Real-time operational visibility across all sites</span>
+          </li>
+        </ul>
+        
+        <a href="/case-studies/gold-mine-optimization" class="case-link">Read the full case study</a>
+      </div>
+      
+      <div class="case-image">
+        <img src="/images/case-studies/mining-stockpile-analysis.jpg" alt="3D volumetric analysis of mining stockpiles" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Mining Process Integration -->
+  <section class="process-integration">
+    <div class="container">
+      <h2 class="section-title">Integrated Mining Workflow</h2>
+      <p class="section-subtitle">Seamlessly integrate aerial intelligence into your existing mining operations</p>
+      
+      <div class="workflow-steps">
+        <div class="workflow-step">
+          <div class="step-number">1</div>
+          <div class="step-icon">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <h3>Scheduled Surveys</h3>
+          <p>Automated flight planning and execution based on your operational schedule and requirements.</p>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">2</div>
+          <div class="step-icon">
+            <i class="fa-solid fa-cloud-upload-alt"></i>
+          </div>
+          <h3>Real-Time Processing</h3>
+          <p>Immediate data processing and analysis with results available within hours of data collection.</p>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">3</div>
+          <div class="step-icon">
+            <i class="fa-solid fa-chart-bar"></i>
+          </div>
+          <h3>Automated Reporting</h3>
+          <p>Customized dashboards and reports integrated directly into your mining management systems.</p>
+        </div>
+        
+        <div class="workflow-step">
+          <div class="step-number">4</div>
+          <div class="step-icon">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <h3>Alert Systems</h3>
+          <p>Proactive notifications for inventory thresholds, environmental changes, and safety concerns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Specifications -->
+  <Specifications
+    title="Technical Capabilities"
+    specifications={miningSpecs}
+  />
+  
+  <!-- Mining Software Integration -->
+  <section class="software-integration">
+    <div class="container">
+      <div class="integration-content">
+        <h2>Mining Software Integration</h2>
+        <p>Our solutions integrate seamlessly with leading mining software platforms, ensuring your aerial data flows directly into existing workflows and systems.</p>
+        
+        <div class="software-categories">
+          <div class="software-category">
+            <h3>Mine Planning Software</h3>
+            <div class="software-logos">
+              <img src="/images/software/minesight-logo.png" alt="MineSight" />
+              <img src="/images/software/surpac-logo.png" alt="Surpac" />
+              <img src="/images/software/vulcan-logo.png" alt="Vulcan" />
+              <img src="/images/software/deswik-logo.png" alt="Deswik" />
+            </div>
+          </div>
+          
+          <div class="software-category">
+            <h3>Fleet Management</h3>
+            <div class="software-logos">
+              <img src="/images/software/dispatch-logo.png" alt="Dispatch" />
+              <img src="/images/software/wenco-logo.png" alt="Wenco" />
+              <img src="/images/software/modular-logo.png" alt="Modular Mining" />
+            </div>
+          </div>
+          
+          <div class="software-category">
+            <h3>Environmental Systems</h3>
+            <div class="software-logos">
+              <img src="/images/software/enviromine-logo.png" alt="EnviroMine" />
+              <img src="/images/software/ehs-logo.png" alt="EHS Software" />
+              <img src="/images/software/compliance-logo.png" alt="Compliance Manager" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="What Mining Professionals Say"
+    testimonials={testimonials}
+  />
+  
+  <!-- Mining Applications -->
+  <section class="mining-applications">
+    <div class="container">
+      <h2 class="section-title">Comprehensive Mining Solutions</h2>
+      <p class="section-subtitle">Our technology serves all aspects of mining operations</p>
+      
+      <div class="applications-grid">
+        <div class="application-category">
+          <h3>Surface Mining</h3>
+          <ul class="application-list">
+            <li>Open-pit optimization</li>
+            <li>Overburden management</li>
+            <li>Haul road monitoring</li>
+            <li>Bench stability analysis</li>
+            <li>Blast pattern optimization</li>
+          </ul>
+        </div>
+        
+        <div class="application-category">
+          <h3>Processing Operations</h3>
+          <ul class="application-list">
+            <li>Stockpile inventory</li>
+            <li>Conveyor inspection</li>
+            <li>Tailings management</li>
+            <li>Plant infrastructure monitoring</li>
+            <li>Dust monitoring</li>
+          </ul>
+        </div>
+        
+        <div class="application-category">
+          <h3>Environmental Management</h3>
+          <ul class="application-list">
+            <li>Vegetation monitoring</li>
+            <li>Water quality assessment</li>
+            <li>Rehabilitation tracking</li>
+            <li>Biodiversity surveys</li>
+            <li>Erosion monitoring</li>
+          </ul>
+        </div>
+        
+        <div class="application-category">
+          <h3>Exploration Support</h3>
+          <ul class="application-list">
+            <li>Geological mapping</li>
+            <li>Terrain analysis</li>
+            <li>Access road planning</li>
+            <li>Drill site surveys</li>
+            <li>Mineral identification</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Related Resources -->
+  <section class="related-resources">
+    <div class="container">
+      <h2 class="section-title">Related Resources</h2>
+      <p class="section-subtitle">Explore our latest insights on mining technology applications</p>
+      
+      <div class="blog-posts">
+        {relatedPosts.map(post => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            image={post.image}
+            date={post.date}
+            author={post.author}
+            url={post.url}
+            categories={post.categories}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Optimize Your Mining Operations?"
+    text="Schedule a consultation with our mining technology specialists to discuss your specific operational challenges and opportunities."
+    buttonText="Request Mining Demo"
+    buttonUrl="/contact?service=mining-demo"
+    backgroundImage="/images/cta/mining-operations.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Industry Introduction */
+  .industry-intro {
+    padding: 4rem 0;
+  }
+  
+  .intro-content {
+    margin-bottom: 3rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+    text-align: center;
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .intro-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Applications Section */
+  .applications-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Case Study */
+  .case-study {
+    padding: 4rem 0;
+    background-color: white;
+  }
+  
+  .case-study .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .case-content {
+    flex: 1;
+  }
+  
+  .case-image {
+    flex: 1;
+  }
+  
+  .case-tag {
+    display: inline-block;
+    background-color: var(--color-soft-yellow);
+    color: var(--color-charcoal-gray);
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .case-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .case-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .case-results {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .case-results li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .case-results i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  
+  .case-link {
+    display: inline-block;
+    color: var(--color-teal);
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .case-link:hover {
+    color: var(--color-teal-dark);
+  }
+  
+  .case-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Process Integration */
+  .process-integration {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .workflow-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .workflow-step {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .workflow-step:hover {
+    transform: translateY(-5px);
+  }
+  
+  .step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-teal);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+  }
+  
+  .step-icon {
+    font-size: 2rem;
+    color: var(--color-teal);
+    margin-bottom: 1rem;
+  }
+  
+  .workflow-step h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .workflow-step p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Software Integration */
+  .software-integration {
+    padding: 4rem 0;
+  }
+  
+  .integration-content h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .integration-content p {
+    text-align: center;
+    color: #444;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .software-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .software-category {
+    background-color: var(--color-soft-white);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+  
+  .software-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    border-bottom: 2px solid var(--color-teal);
+    padding-bottom: 0.5rem;
+  }
+  
+  .software-logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .software-logos img {
+    max-height: 40px;
+    max-width: 100px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .software-logos img:hover {
+    opacity: 1;
+  }
+  
+  /* Mining Applications */
+  .mining-applications {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .application-category {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .application-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-teal);
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .application-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .application-list li {
+    padding: 0.5rem 0;
+    color: #666;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .application-list li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Related Resources */
+  .related-resources {
+    padding: 4rem 0;
+  }
+  
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .case-study .container {
+      flex-direction: column;
+    }
+    
+    .case-content, .case-image {
+      width: 100%;
+    }
+    
+    .case-image {
+      margin-top: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .intro-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .features-grid,
+    .workflow-steps,
+    .applications-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-posts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

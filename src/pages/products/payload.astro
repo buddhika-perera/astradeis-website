@@ -1,0 +1,763 @@
+<!-- src/pages/products/payload.astro -->
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import FeatureCard from '../../components/common/FeatureCard.astro';
+import Specifications from '../../components/sections/Specifications.astro';
+import TestimonialSlider from '../../components/sections/TestimonialSlider.astro';
+import CallToAction from '../../components/sections/CallToAction.astro';
+import FAQAccordion from '../../components/sections/FAQAccordion.astro';
+
+// Payload systems features
+const payloadFeatures = [
+  {
+    title: "RGB Imaging System",
+    description: "High-resolution visual spectrum cameras for detailed mapping and inspection applications",
+    icon: "fa-solid fa-camera",
+    url: "/products/payload/rgb-imaging"
+  },
+  {
+    title: "Multispectral Sensors",
+    description: "Multi-band sensors for agriculture, environmental monitoring, and vegetation analysis",
+    icon: "fa-solid fa-eye",
+    url: "/products/payload/multispectral"
+  },
+  {
+    title: "LiDAR Systems",
+    description: "Precision 3D mapping with centimeter-level accuracy for topographic surveys",
+    icon: "fa-solid fa-mountain",
+    url: "/products/payload/lidar"
+  },
+  {
+    title: "Thermal Imaging",
+    description: "Infrared sensors for heat detection, building inspection, and energy audits",
+    icon: "fa-solid fa-temperature-high",
+    url: "/products/payload/thermal"
+  },
+  {
+    title: "Hyperspectral Sensors",
+    description: "Advanced spectral analysis for mineral detection, crop health, and material identification",
+    icon: "fa-solid fa-spectrum",
+    url: "/products/payload/hyperspectral"
+  },
+  {
+    title: "Gas Detection Systems",
+    description: "Environmental monitoring sensors for methane, CO2, and other gas emissions",
+    icon: "fa-solid fa-wind",
+    url: "/products/payload/gas-detection"
+  }
+];
+
+// Payload specifications
+const payloadSpecs = [
+  {
+    title: "RGB Imaging Systems",
+    features: [
+      "Resolution: Up to 61MP full-frame sensor",
+      "Lens Options: 24mm, 35mm, 50mm fixed focal lengths",
+      "Video Recording: 4K @ 60fps, 8K @ 30fps",
+      "Image Stabilization: 3-axis mechanical gimbal",
+      "File Formats: RAW, JPEG, TIFF",
+      "Storage: Dual CFexpress cards up to 512GB each"
+    ]
+  },
+  {
+    title: "Multispectral Sensors",
+    features: [
+      "Spectral Bands: 5-band system (Blue, Green, Red, Red Edge, NIR)",
+      "Resolution: 3.2MP per band",
+      "Spectral Range: 400-1000nm",
+      "Radiometric Calibration: Integrated calibration panel",
+      "Data Output: GeoTIFF with GPS coordinates",
+      "Applications: NDVI, NDRE, custom vegetation indices"
+    ]
+  },
+  {
+    title: "LiDAR Systems",
+    features: [
+      "Range: Up to 250m (at 80% reflectivity)",
+      "Accuracy: ±2cm vertical, ±3cm horizontal",
+      "Point Rate: Up to 320,000 points/second",
+      "Field of View: 360° horizontal, ±15° vertical",
+      "Eye Safety: Class 1 laser (905nm wavelength)",
+      "Data Output: LAS/LAZ point clouds with RGB colorization"
+    ]
+  }
+];
+
+// Application areas
+const applications = [
+  {
+    title: "Agriculture",
+    description: "Crop health monitoring, yield prediction, and precision application mapping",
+    image: "/images/applications/agriculture-payload.jpg",
+    sensors: ["RGB", "Multispectral", "Thermal"]
+  },
+  {
+    title: "Construction",
+    description: "Progress monitoring, volumetric analysis, and quality inspection",
+    image: "/images/applications/construction-payload.jpg", 
+    sensors: ["RGB", "LiDAR", "Thermal"]
+  },
+  {
+    title: "Mining",
+    description: "Stockpile measurement, pit mapping, and environmental compliance",
+    image: "/images/applications/mining-payload.jpg",
+    sensors: ["LiDAR", "Hyperspectral", "Gas Detection"]
+  },
+  {
+    title: "Environmental",
+    description: "Ecosystem monitoring, pollution detection, and habitat assessment",
+    image: "/images/applications/environmental-payload.jpg",
+    sensors: ["Multispectral", "Hyperspectral", "Gas Detection"]
+  }
+];
+
+// Testimonials
+const testimonials = [
+  {
+    quote: "The modular payload system allows us to switch between RGB and multispectral sensors in under 60 seconds. This flexibility has transformed our operational efficiency across different project types.",
+    author: "Dr. Sarah Martinez",
+    position: "Remote Sensing Director",
+    company: "Agricultural Research Institute"
+  },
+  {
+    quote: "The LiDAR accuracy we achieve with Astradeis payloads is exceptional. We consistently get sub-3cm accuracy which is critical for our topographic surveying applications.",
+    author: "James Thompson",
+    position: "Survey Manager",
+    company: "Precision Mapping Solutions"
+  },
+  {
+    quote: "The integrated GPS and IMU system provides excellent georeferencing. Our data processing workflows have become much more streamlined since adopting these payload systems.",
+    author: "Maria Rodriguez",
+    position: "GIS Analyst",
+    company: "Environmental Consulting Group"
+  }
+];
+
+// FAQs
+const faqs = [
+  {
+    question: "Can multiple sensors be operated simultaneously?",
+    answer: "Yes, our payload systems support simultaneous operation of up to 3 compatible sensors. For example, you can run RGB, multispectral, and thermal sensors together, allowing you to collect comprehensive data in a single flight mission."
+  },
+  {
+    question: "How quickly can payloads be swapped between missions?",
+    answer: "Our modular design allows for payload changes in under 60 seconds. The quick-release mounting system and plug-and-play connectors eliminate the need for tools or complex calibration procedures between sensor swaps."
+  },
+  {
+    question: "What level of accuracy can I expect from the LiDAR system?",
+    answer: "Our LiDAR systems typically achieve ±2cm vertical accuracy and ±3cm horizontal accuracy under normal operating conditions. Accuracy can be enhanced further with the use of ground control points and post-processing techniques."
+  },
+  {
+    question: "Are the sensors calibrated and how often do they need recalibration?",
+    answer: "All sensors come factory-calibrated with traceable calibration certificates. For most applications, annual recalibration is sufficient. However, for high-precision applications, we recommend quarterly calibration checks. We provide calibration services and can train your team on field calibration procedures."
+  },
+  {
+    question: "What data formats are supported and how is the data georeferenced?",
+    answer: "Our systems output industry-standard formats including GeoTIFF for imagery, LAS/LAZ for LiDAR data, and various spectral analysis formats. All data is automatically georeferenced using integrated GPS/IMU systems, with optional RTK support for centimeter-level positioning accuracy."
+  }
+];
+---
+
+<BaseLayout 
+  title="Advanced Payload Systems" 
+  description="Modular sensor payloads for professional drone applications including RGB, multispectral, LiDAR, and thermal imaging systems."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Advanced Sensor Payload Systems" 
+    subtitle="Modular, high-precision sensors designed for professional aerial data collection"
+    backgroundImage="/images/payload/payload-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact?product=payload" class="btn primary-btn">Request Information</a>
+      <a href="/resources/payload-guide" class="btn secondary-btn">Technical Guide</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Payload Introduction -->
+  <section class="payload-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Precision-Engineered Sensor Solutions</h2>
+        <p>Astradeis payload systems represent the cutting edge of aerial sensor technology. Our modular approach allows you to configure the perfect sensor package for your specific application, whether you need high-resolution RGB imagery, multispectral analysis, precision LiDAR mapping, or thermal inspection capabilities.</p>
+        
+        <p>Each payload system is designed for rapid deployment and easy integration with our drone platforms, ensuring you can adapt quickly to changing project requirements while maintaining the highest standards of data quality and accuracy.</p>
+      </div>
+      
+      <div class="intro-stats">
+        <div class="stat-item">
+          <span class="stat-number">15+</span>
+          <span class="stat-label">Sensor configurations</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">60sec</span>
+          <span class="stat-label">Payload swap time</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">2cm</span>
+          <span class="stat-label">LiDAR accuracy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Payload Systems -->
+  <section class="payload-systems">
+    <div class="container">
+      <h2 class="section-title">Payload Systems</h2>
+      <p class="section-subtitle">Choose from our comprehensive range of professional sensor systems</p>
+      
+      <div class="systems-grid">
+        {payloadFeatures.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            url={feature.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Modular Design Showcase -->
+  <section class="modular-design">
+    <div class="container">
+      <div class="design-content">
+        <h2>Modular Design Philosophy</h2>
+        <p>Our payload systems are built around a modular architecture that maximizes flexibility and operational efficiency. The standardized mounting interface allows rapid sensor swapping, while integrated GPS/IMU systems ensure consistent georeferencing across all sensor types.</p>
+        
+        <ul class="design-features">
+          <li>
+            <i class="fa-solid fa-puzzle-piece"></i>
+            <span>Universal mounting system compatible with all Astradeis aircraft</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-bolt"></i>
+            <span>Hot-swappable connectors for power and data transmission</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-satellite"></i>
+            <span>Integrated GPS/IMU for precise positioning and orientation</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-microchip"></i>
+            <span>Onboard processing for real-time data validation</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="design-image">
+        <img src="/images/payload/modular-design.jpg" alt="Modular payload design showing interchangeable sensors" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Application Areas -->
+  <section class="application-areas">
+    <div class="container">
+      <h2 class="section-title">Application Areas</h2>
+      <p class="section-subtitle">Our payload systems serve diverse industries with specialized sensor configurations</p>
+      
+      <div class="applications-grid">
+        {applications.map(app => (
+          <div class="application-card">
+            <div class="app-image">
+              <img src={app.image} alt={app.title} />
+            </div>
+            <div class="app-content">
+              <h3>{app.title}</h3>
+              <p>{app.description}</p>
+              <div class="sensor-tags">
+                {app.sensors.map(sensor => (
+                  <span class="sensor-tag">{sensor}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Specifications -->
+  <Specifications
+    title="Technical Specifications"
+    specifications={payloadSpecs}
+  />
+  
+  <!-- Data Output Examples -->
+  <section class="data-outputs">
+    <div class="container">
+      <h2 class="section-title">Data Output Examples</h2>
+      <p class="section-subtitle">See the quality and precision of data our payload systems deliver</p>
+      
+      <div class="output-examples">
+        <div class="output-item">
+          <img src="/images/payload/rgb-output.jpg" alt="High-resolution RGB orthomosaic example" />
+          <h3>RGB Orthomosaic</h3>
+          <p>Ultra-high resolution visual imagery with sub-centimeter ground sample distance for detailed mapping and inspection applications.</p>
+        </div>
+        
+        <div class="output-item">
+          <img src="/images/payload/multispectral-output.jpg" alt="NDVI vegetation analysis example" />
+          <h3>Multispectral Analysis</h3>
+          <p>Vegetation health indices including NDVI, NDRE, and custom spectral analysis for precision agriculture applications.</p>
+        </div>
+        
+        <div class="output-item">
+          <img src="/images/payload/lidar-output.jpg" alt="3D point cloud visualization" />
+          <h3>LiDAR Point Cloud</h3>
+          <p>Dense 3D point clouds with RGB colorization for accurate terrain modeling and volumetric measurements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="What Professionals Say About Our Payloads"
+    testimonials={testimonials}
+  />
+  
+  <!-- Integration & Compatibility -->
+  <section class="integration-info">
+    <div class="container">
+      <div class="integration-content">
+        <h2>Software Integration & Compatibility</h2>
+        <p>Our payload systems integrate seamlessly with leading photogrammetry and GIS software platforms, ensuring your data fits directly into existing workflows.</p>
+        
+        <div class="software-logos">
+          <div class="software-category">
+            <h3>Photogrammetry</h3>
+            <div class="logos">
+              <img src="/images/software/pix4d-logo.png" alt="Pix4D" />
+              <img src="/images/software/agisoft-logo.png" alt="Agisoft Metashape" />
+              <img src="/images/software/correlator3d-logo.png" alt="Correlator3D" />
+            </div>
+          </div>
+          
+          <div class="software-category">
+            <h3>GIS Platforms</h3>
+            <div class="logos">
+              <img src="/images/software/arcgis-logo.png" alt="ArcGIS" />
+              <img src="/images/software/qgis-logo.png" alt="QGIS" />
+              <img src="/images/software/global-mapper-logo.png" alt="Global Mapper" />
+            </div>
+          </div>
+          
+          <div class="software-category">
+            <h3>Point Cloud Processing</h3>
+            <div class="logos">
+              <img src="/images/software/cloudcompare-logo.png" alt="CloudCompare" />
+              <img src="/images/software/terrascan-logo.png" alt="TerraScan" />
+              <img src="/images/software/recap-logo.png" alt="Autodesk ReCap" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Upgrade Your Sensor Capabilities?"
+    text="Contact our payload specialists to discuss the optimal sensor configuration for your applications."
+    buttonText="Discuss Requirements"
+    buttonUrl="/contact?product=payload-consultation"
+    backgroundImage="/images/cta/payload-selection.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Payload Introduction */
+  .payload-intro {
+    padding: 4rem 0;
+  }
+  
+  .intro-content {
+    margin-bottom: 3rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+    text-align: center;
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .intro-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Payload Systems */
+  .payload-systems {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .systems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Modular Design */
+  .modular-design {
+    padding: 4rem 0;
+  }
+  
+  .modular-design .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .design-content {
+    flex: 1;
+  }
+  
+  .design-image {
+    flex: 1;
+  }
+  
+  .design-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .design-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .design-features {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .design-features li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .design-features i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    font-size: 1.2rem;
+  }
+  
+  .design-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Application Areas */
+  .application-areas {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .application-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .application-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .app-image {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .app-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .application-card:hover .app-image img {
+    transform: scale(1.05);
+  }
+  
+  .app-content {
+    padding: 1.5rem;
+  }
+  
+  .app-content h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .app-content p {
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+  }
+  
+  .sensor-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .sensor-tag {
+    background-color: var(--color-soft-yellow);
+    color: var(--color-charcoal-gray);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+  
+  /* Data Outputs */
+  .data-outputs {
+    padding: 4rem 0;
+  }
+  
+  .output-examples {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .output-item {
+    text-align: center;
+  }
+  
+  .output-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .output-item h3 {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .output-item p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Integration Info */
+  .integration-info {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .integration-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+    text-align: center;
+  }
+  
+  .integration-content p {
+    margin-bottom: 2rem;
+    color: #444;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .software-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .software-category {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .software-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    border-bottom: 2px solid var(--color-teal);
+    padding-bottom: 0.5rem;
+  }
+  
+  .logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .logos img {
+    max-height: 40px;
+    max-width: 80px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .logos img:hover {
+    opacity: 1;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .modular-design .container {
+      flex-direction: column;
+    }
+    
+    .design-content, .design-image {
+      width: 100%;
+    }
+    
+    .design-image {
+      margin-top: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .intro-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .systems-grid,
+    .applications-grid,
+    .output-examples {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

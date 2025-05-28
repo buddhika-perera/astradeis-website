@@ -1,0 +1,864 @@
+<!-- src/pages/industries/environmental.astro -->
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/sections/HeroSection.astro';
+import FeatureCard from '../../components/common/FeatureCard.astro';
+import Specifications from '../../components/sections/Specifications.astro';
+import TestimonialSlider from '../../components/sections/TestimonialSlider.astro';
+import CallToAction from '../../components/sections/CallToAction.astro';
+import FAQAccordion from '../../components/sections/FAQAccordion.astro';
+import BlogCard from '../../components/common/BlogCard.astro';
+
+// Environmental solutions features
+const environmentalFeatures = [
+  {
+    title: "Habitat Monitoring & Assessment",
+    description: "Comprehensive wildlife habitat analysis, biodiversity surveys, and ecosystem health monitoring",
+    icon: "fa-solid fa-dove",
+    url: "/products/environmental/habitat-monitoring"
+  },
+  {
+    title: "Vegetation & Forest Analysis",
+    description: "Advanced vegetation mapping, forest health assessment, and carbon stock estimation",
+    icon: "fa-solid fa-tree",
+    url: "/products/environmental/vegetation-analysis"
+  },
+  {
+    title: "Water Quality Monitoring",
+    description: "Remote sensing of water bodies for pollution detection, algae monitoring, and quality assessment",
+    icon: "fa-solid fa-water",
+    url: "/products/environmental/water-quality"
+  },
+  {
+    title: "Pollution & Contamination Detection",
+    description: "Identify and track environmental contamination, oil spills, and pollutant sources",
+    icon: "fa-solid fa-exclamation-triangle",
+    url: "/products/environmental/pollution-detection"
+  },
+  {
+    title: "Climate Change Monitoring",
+    description: "Long-term environmental change detection and climate impact assessment",
+    icon: "fa-solid fa-thermometer-half",
+    url: "/products/environmental/climate-monitoring"
+  },
+  {
+    title: "Conservation Planning",
+    description: "Support conservation efforts with detailed spatial data and change analysis",
+    icon: "fa-solid fa-shield-alt",
+    url: "/products/environmental/conservation-planning"
+  }
+];
+
+// Environmental specifications
+const environmentalSpecs = [
+  {
+    title: "Remote Sensing Capabilities",
+    features: [
+      "Multispectral: 5-band vegetation analysis",
+      "Hyperspectral: 150+ spectral bands for detailed analysis",
+      "Thermal Imaging: Heat and temperature mapping",
+      "LiDAR: Forest structure and biomass estimation",
+      "Gas Detection: Methane, CO2, and other emissions",
+      "Water Quality: Turbidity, chlorophyll, suspended sediments"
+    ]
+  },
+  {
+    title: "Environmental Applications",
+    features: [
+      "Species habitat mapping and monitoring",
+      "Invasive species detection and tracking",
+      "Forest health and disease assessment",
+      "Wetland boundary delineation",
+      "Carbon sequestration measurement",
+      "Environmental impact assessment"
+    ]
+  },
+  {
+    title: "Data Products",
+    features: [
+      "Vegetation indices (NDVI, EVI, SAVI)",
+      "Biomass and carbon stock estimates",
+      "Species distribution models",
+      "Change detection analysis",
+      "Environmental compliance reports",
+      "Conservation status assessments"
+    ]
+  }
+];
+
+// Environmental testimonials
+const testimonials = [
+  {
+    quote: "Astradeis environmental monitoring capabilities have revolutionized our conservation work. We can now track habitat changes across thousands of hectares with unprecedented detail and frequency.",
+    author: "Dr. Rachel Green",
+    position: "Senior Ecologist",
+    company: "National Wildlife Foundation"
+  },
+  {
+    quote: "The water quality monitoring from aerial platforms has enabled us to detect pollution sources and track remediation progress in ways that traditional methods simply couldn't achieve.",
+    author: "James Patterson",
+    position: "Environmental Consultant",
+    company: "EcoSolutions Environmental"
+  },
+  {
+    quote: "For our climate research projects, the long-term monitoring capabilities provide invaluable data on environmental changes that inform both local and global climate studies.",
+    author: "Prof. Maria Santos",
+    position: "Climate Research Director",
+    company: "University Environmental Institute"
+  }
+];
+
+// Environmental FAQs
+const faqs = [
+  {
+    question: "How can drones help with environmental compliance monitoring?",
+    answer: "Drones provide regular, comprehensive monitoring of environmental conditions with detailed documentation for compliance reporting. We can track vegetation restoration progress, monitor protected areas, detect unauthorized activities, and document environmental changes over time. This provides regulatory agencies with objective evidence of compliance and helps identify issues before they become violations."
+  },
+  {
+    question: "What types of environmental pollutants can be detected from aerial platforms?",
+    answer: "Our systems can detect various pollutants including oil spills, chemical contamination, algae blooms, sediment plumes, and gas emissions. Hyperspectral sensors can identify specific contaminants, while thermal imaging detects temperature anomalies that may indicate pollution sources. Gas detection sensors can monitor methane, CO2, and other atmospheric pollutants."
+  },
+  {
+    question: "How accurate is vegetation and forest health assessment using drone technology?",
+    answer: "Our vegetation analysis achieves high accuracy through multispectral and hyperspectral imaging. We can detect stress conditions, disease, and species composition with over 90% accuracy. For forest assessments, LiDAR provides precise canopy structure data, while spectral analysis identifies health indicators invisible to the naked eye. Regular monitoring allows us to track changes and trends over time."
+  },
+  {
+    question: "Can your systems support long-term environmental research projects?",
+    answer: "Absolutely. We specialize in long-term monitoring programs with consistent methodology and calibrated sensors to ensure data comparability over time. Our systems can detect subtle environmental changes that occur over months or years, making them ideal for climate research, ecosystem monitoring, and conservation studies. We maintain detailed metadata and processing records to support scientific publication requirements."
+  },
+  {
+    question: "How do you ensure data quality for scientific and regulatory applications?",
+    answer: "We follow rigorous quality control procedures including sensor calibration, ground truthing, statistical validation, and peer review protocols. All data collection follows established scientific methodologies with proper documentation, metadata, and uncertainty analysis. Our team includes environmental scientists who ensure data meets scientific standards and regulatory requirements."
+  }
+];
+
+// Related blog posts
+const relatedPosts = [
+  {
+    title: "Using Hyperspectral Imaging for Environmental Contamination Detection",
+    excerpt: "Advanced spectral analysis techniques for identifying and monitoring environmental pollutants from aerial platforms.",
+    image: "/images/blog/hyperspectral-contamination.jpg",
+    date: "2024-03-12",
+    author: "Dr. Rachel Green",
+    url: "/blog/hyperspectral-contamination-detection",
+    categories: ["Environmental", "Technology"]
+  },
+  {
+    title: "Climate Change Monitoring: A Decade of Aerial Data Analysis",
+    excerpt: "How long-term aerial monitoring programs are contributing to climate science and environmental understanding.",
+    image: "/images/blog/climate-monitoring-decade.jpg",
+    date: "2024-02-18",
+    author: "Prof. Maria Santos",
+    url: "/blog/climate-monitoring-aerial-data",
+    categories: ["Environmental", "Climate"]
+  },
+  {
+    title: "Wetland Conservation Through Advanced Remote Sensing",
+    excerpt: "Innovative approaches to wetland mapping, monitoring, and conservation using drone-based remote sensing technology.",
+    image: "/images/blog/wetland-conservation-remote-sensing.jpg",
+    date: "2024-01-28",
+    author: "James Patterson",
+    url: "/blog/wetland-conservation-remote-sensing",
+    categories: ["Environmental", "Conservation"]
+  }
+];
+---
+
+<BaseLayout 
+  title="Environmental Monitoring Solutions" 
+  description="Advanced drone-based environmental monitoring for habitat assessment, pollution detection, and conservation research."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Environmental Monitoring & Conservation" 
+    subtitle="Advanced aerial intelligence for ecosystem protection, pollution detection, and environmental research"
+    backgroundImage="/images/industries/environmental-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact?service=environmental" class="btn primary-btn">Request Consultation</a>
+      <a href="#applications" class="btn secondary-btn">View Applications</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Industry Introduction -->
+  <section class="industry-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Advanced Environmental Intelligence</h2>
+        <p>Environmental protection and research require comprehensive, accurate data about ecosystems, pollution sources, and environmental changes. Astradeis environmental monitoring solutions provide the detailed insights needed for effective conservation, compliance monitoring, and scientific research.</p>
+        
+        <p>Our specialized sensor systems and analytical capabilities enable detection of environmental conditions and changes that are invisible to traditional monitoring methods, supporting evidence-based environmental management decisions.</p>
+      </div>
+      
+      <div class="intro-stats">
+        <div class="stat-item">
+          <span class="stat-number">90%</span>
+          <span class="stat-label">Vegetation analysis accuracy</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">150+</span>
+          <span class="stat-label">Spectral bands for analysis</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">Continuous monitoring capability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Key Applications -->
+  <section id="applications" class="applications-section">
+    <div class="container">
+      <h2 class="section-title">Environmental Applications</h2>
+      <p class="section-subtitle">Comprehensive solutions for environmental monitoring and conservation</p>
+      
+      <div class="features-grid">
+        {environmentalFeatures.map(feature => (
+          <FeatureCard
+            title={feature.title}
+            description={feature.description}
+            icon={feature.icon}
+            url={feature.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Conservation Success Story -->
+  <section class="conservation-story">
+    <div class="container">
+      <div class="story-content">
+        <div class="story-tag">CONSERVATION SUCCESS</div>
+        <h2>Protecting 15,000 Hectares of Critical Habitat</h2>
+        <p>A major conservation organization partnered with Astradeis to monitor and protect a critical wildlife corridor spanning 15,000 hectares. Using our comprehensive environmental monitoring system, they were able to track habitat changes, detect threats, and optimize conservation strategies.</p>
+        
+        <ul class="story-results">
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>95% improvement in threat detection response time</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Documented 23% increase in wildlife populations</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Identified and protected 12 new critical habitats</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-check"></i>
+            <span>Successful restoration of 800 hectares of degraded land</span>
+          </li>
+        </ul>
+        
+        <a href="/case-studies/wildlife-corridor-conservation" class="story-link">Read the full conservation story</a>
+      </div>
+      
+      <div class="story-image">
+        <img src="/images/case-studies/wildlife-corridor-monitoring.jpg" alt="Aerial view of protected wildlife corridor showing habitat diversity" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Monitoring Capabilities -->
+  <section class="monitoring-capabilities">
+    <div class="container">
+      <h2 class="section-title">Advanced Monitoring Capabilities</h2>
+      <p class="section-subtitle">Cutting-edge technology for comprehensive environmental assessment</p>
+      
+      <div class="capabilities-grid">
+        <div class="capability-item">
+          <div class="capability-icon">
+            <i class="fa-solid fa-microscope"></i>
+          </div>
+          <h3>Hyperspectral Analysis</h3>
+          <p>150+ spectral bands enable identification of specific species, pollutants, and chemical compositions invisible to standard cameras.</p>
+        </div>
+        
+        <div class="capability-item">
+          <div class="capability-icon">
+            <i class="fa-solid fa-thermometer-quarter"></i>
+          </div>
+          <h3>Thermal Monitoring</h3>
+          <p>Detect temperature anomalies, water stress in vegetation, and thermal pollution sources with precision thermal imaging.</p>
+        </div>
+        
+        <div class="capability-item">
+          <div class="capability-icon">
+            <i class="fa-solid fa-wind"></i>
+          </div>
+          <h3>Gas Detection</h3>
+          <p>Monitor methane emissions, CO2 levels, and other atmospheric gases for climate and pollution research.</p>
+        </div>
+        
+        <div class="capability-item">
+          <div class="capability-icon">
+            <i class="fa-solid fa-chart-area"></i>
+          </div>
+          <h3>Change Detection</h3>
+          <p>Track environmental changes over time with sub-meter accuracy for long-term monitoring programs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Technical Specifications -->
+  <Specifications
+    title="Environmental Monitoring Capabilities"
+    specifications={environmentalSpecs}
+  />
+  
+  <!-- Research Applications -->
+  <section class="research-applications">
+    <div class="container">
+      <h2 class="section-title">Research & Scientific Applications</h2>
+      <p class="section-subtitle">Supporting environmental science and conservation research worldwide</p>
+      
+      <div class="research-areas">
+        <div class="research-area">
+          <h3>Biodiversity Studies</h3>
+          <ul class="research-list">
+            <li>Species distribution mapping</li>
+            <li>Population density estimation</li>
+            <li>Habitat connectivity analysis</li>
+            <li>Migration pattern tracking</li>
+            <li>Breeding site identification</li>
+          </ul>
+        </div>
+        
+        <div class="research-area">
+          <h3>Climate Research</h3>
+          <ul class="research-list">
+            <li>Carbon sequestration measurement</li>
+            <li>Vegetation phenology studies</li>
+            <li>Urban heat island mapping</li>
+            <li>Glacier and ice monitoring</li>
+            <li>Sea level rise impact assessment</li>
+          </ul>
+        </div>
+        
+        <div class="research-area">
+          <h3>Ecosystem Health</h3>
+          <ul class="research-list">
+            <li>Forest health assessment</li>
+            <li>Wetland condition monitoring</li>
+            <li>Coral reef health analysis</li>
+            <li>Invasive species tracking</li>
+            <li>Restoration success monitoring</li>
+          </ul>
+        </div>
+        
+        <div class="research-area">
+          <h3>Pollution Studies</h3>
+          <ul class="research-list">
+            <li>Water quality assessment</li>
+            <li>Air pollution monitoring</li>
+            <li>Soil contamination detection</li>
+            <li>Industrial emission tracking</li>
+            <li>Agricultural runoff analysis</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Scientific Partnerships -->  
+  <section class="scientific-partnerships">
+    <div class="container">
+      <div class="partnerships-content">
+        <h2>Scientific Partnerships & Collaborations</h2>
+        <p>We collaborate with leading research institutions, government agencies, and conservation organizations to advance environmental science and support critical research projects.</p>
+        
+        <div class="partner-categories">
+          <div class="partner-category">
+            <h3>Research Institutions</h3>
+            <div class="partner-logos">
+              <img src="/images/partners/university-1-logo.png" alt="Environmental Research University" />
+              <img src="/images/partners/university-2-logo.png" alt="Marine Science Institute" />
+              <img src="/images/partners/research-center-logo.png" alt="Climate Research Center" />
+            </div>
+          </div>
+          
+          <div class="partner-category">
+            <h3>Government Agencies</h3>
+            <div class="partner-logos">
+              <img src="/images/partners/epa-logo.png" alt="Environmental Protection Agency" />
+              <img src="/images/partners/parks-service-logo.png" alt="National Parks Service" />
+              <img src="/images/partners/wildlife-service-logo.png" alt="Wildlife Service" />
+            </div>
+          </div>
+          
+          <div class="partner-category">
+            <h3>Conservation Organizations</h3>
+            <div class="partner-logos">
+              <img src="/images/partners/wildlife-foundation-logo.png" alt="Wildlife Foundation" />
+              <img src="/images/partners/conservation-society-logo.png" alt="Conservation Society" />
+              <img src="/images/partners/environmental-trust-logo.png" alt="Environmental Trust" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="What Environmental Professionals Say"
+    testimonials={testimonials}
+  />
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Related Resources -->
+  <section class="related-resources">
+    <div class="container">
+      <h2 class="section-title">Related Resources</h2>
+      <p class="section-subtitle">Explore our latest insights on environmental monitoring technology</p>
+      
+      <div class="blog-posts">
+        {relatedPosts.map(post => (
+          <BlogCard
+            title={post.title}
+            excerpt={post.excerpt}
+            image={post.image}
+            date={post.date}
+            author={post.author}
+            url={post.url}
+            categories={post.categories}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Advance Your Environmental Research?"
+    text="Partner with our environmental monitoring specialists to develop comprehensive solutions for your research and conservation projects."
+    buttonText="Start Environmental Project"
+    buttonUrl="/contact?service=environmental-research"
+    backgroundImage="/images/cta/environmental-research.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Industry Introduction */
+  .industry-intro {
+    padding: 4rem 0;
+  }
+  
+  .intro-content {
+    margin-bottom: 3rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+    text-align: center;
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  
+  .intro-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Applications Section */
+  .applications-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Conservation Story */
+  .conservation-story {
+    padding: 4rem 0;
+    background-color: white;
+  }
+  
+  .conservation-story .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .story-content {
+    flex: 1;
+  }
+  
+  .story-image {
+    flex: 1;
+  }
+  
+  .story-tag {
+    display: inline-block;
+    background-color: var(--color-soft-yellow);
+    color: var(--color-charcoal-gray);
+    font-weight: 600;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  
+  .story-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .story-content p {
+    margin-bottom: 1.5rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .story-results {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 2rem;
+  }
+  
+  .story-results li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .story-results i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+  }
+  
+  .story-link {
+    display: inline-block;
+    color: var(--color-teal);
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .story-link:hover {
+    color: var(--color-teal-dark);
+  }
+  
+  .story-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Monitoring Capabilities */
+  .monitoring-capabilities {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .capability-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .capability-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .capability-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--color-teal);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .capability-item:hover .capability-icon {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .capability-item h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .capability-item p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Research Applications */
+  .research-applications {
+    padding: 4rem 0;
+  }
+  
+  .research-areas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .research-area {
+    background-color: var(--color-soft-white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .research-area h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-teal);
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .research-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .research-list li {
+    padding: 0.5rem 0;
+    color: #666;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .research-list li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Scientific Partnerships */
+  .scientific-partnerships {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .partnerships-content h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .partnerships-content p {
+    text-align: center;
+    color: #444;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .partner-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .partner-category {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .partner-category h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    border-bottom: 2px solid var(--color-teal);
+    padding-bottom: 0.5rem;
+  }
+  
+  .partner-logos {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .partner-logos img {
+    max-height: 40px;
+    max-width: 100px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .partner-logos img:hover {
+    opacity: 1;
+  }
+  
+  /* Related Resources */
+  .related-resources {
+    padding: 4rem 0;
+  }
+  
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .conservation-story .container {
+      flex-direction: column;
+    }
+    
+    .story-content, .story-image {
+      width: 100%;
+    }
+    
+    .story-image {
+      margin-top: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .intro-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .features-grid,
+    .capabilities-grid,
+    .research-areas,
+    .partner-categories {
+      grid-template-columns: 1fr;
+    }
+    
+    .blog-posts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

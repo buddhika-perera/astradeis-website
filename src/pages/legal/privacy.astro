@@ -1,0 +1,372 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+const pageData = {
+  title: "Knowledge Base",
+  description: "Find answers to frequently asked questions and comprehensive help articles about Astradeis solutions.",
+  heroTitle: "Knowledge Base",
+  heroSubtitle: "Find answers, get help, and discover everything you need to know about Astradeis",
+  heroImage: "/images/hero/knowledge-hero.jpg"
+};
+---
+
+<PageLayout {...pageData}>
+  <main class="py-16">
+    <!-- Search Section -->
+    <section class="container mx-auto px-6 mb-16">
+      <div class="max-w-2xl mx-auto">
+        <div class="relative">
+          <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Search our knowledge base..." 
+            class="w-full px-6 py-4 pl-12 text-lg border-2 border-gray-300 rounded-xl focus:border-blue-500 focus:outline-none"
+          >
+          <svg class="absolute left-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <p class="text-center text-gray-600 mt-4">
+          Popular searches: <span class="text-blue-600 cursor-pointer hover:underline">API setup</span>, 
+          <span class="text-blue-600 cursor-pointer hover:underline">billing</span>, 
+          <span class="text-blue-600 cursor-pointer hover:underline">data export</span>
+        </p>
+      </div>
+    </section>
+
+    <!-- Quick Access Categories -->
+    <section class="container mx-auto px-6 mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Quick Access</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="category-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" data-category="getting-started">
+          <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Getting Started</h3>
+          <p class="text-gray-600 text-center text-sm">Setup guides and first steps</p>
+          <div class="text-center mt-3">
+            <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">12 articles</span>
+          </div>
+        </div>
+
+        <div class="category-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" data-category="account">
+          <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Account & Billing</h3>
+          <p class="text-gray-600 text-center text-sm">Manage your account and payments</p>
+          <div class="text-center mt-3">
+            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">8 articles</span>
+          </div>
+        </div>
+
+        <div class="category-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" data-category="api">
+          <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">API & Integration</h3>
+          <p class="text-gray-600 text-center text-sm">Connect with our APIs</p>
+          <div class="text-center mt-3">
+            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">15 articles</span>
+          </div>
+        </div>
+
+        <div class="category-card bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow cursor-pointer" data-category="troubleshooting">
+          <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.664-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-900 mb-2 text-center">Troubleshooting</h3>
+          <p class="text-gray-600 text-center text-sm">Common issues and solutions</p>
+          <div class="text-center mt-3">
+            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">10 articles</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="container mx-auto px-6 mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
+      <div class="max-w-4xl mx-auto">
+        <div class="space-y-4">
+          
+          <!-- FAQ Item 1 -->
+          <div class="faq-item bg-white rounded-xl shadow-md">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-semibold text-gray-900">How do I get started with Astradeis?</span>
+              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">
+                Getting started with Astradeis is simple! First, create your account and complete the verification process. 
+                Then, follow our Quick Start Guide to set up your workspace, configure your first project, and explore 
+                the dashboard. Our onboarding wizard will walk you through each step to ensure you're up and running quickly.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 2 -->
+          <div class="faq-item bg-white rounded-xl shadow-md">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-semibold text-gray-900">What payment methods do you accept?</span>
+              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">
+                We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for 
+                enterprise accounts. All payments are processed securely through our encrypted payment gateway. 
+                For enterprise customers, we also offer invoice-based billing with NET 30 terms.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 3 -->
+          <div class="faq-item bg-white rounded-xl shadow-md">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-semibold text-gray-900">How secure is my data with Astradeis?</span>
+              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">
+                Your data security is our top priority. We use enterprise-grade encryption (AES-256) for data at rest 
+                and in transit, maintain SOC 2 Type II compliance, and follow industry best practices for data protection. 
+                All data is backed up regularly and stored in secure, geographically distributed data centers.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 4 -->
+          <div class="faq-item bg-white rounded-xl shadow-md">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-semibold text-gray-900">Can I integrate Astradeis with my existing tools?</span>
+              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">
+                Absolutely! Astradeis offers robust API integration capabilities and pre-built connectors for popular 
+                tools like Salesforce, HubSpot, Slack, Microsoft Teams, and many others. Our REST API allows for 
+                custom integrations, and our support team can help you set up complex integration scenarios.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 5 -->
+          <div class="faq-item bg-white rounded-xl shadow-md">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-semibold text-gray-900">What support options are available?</span>
+              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">
+                We offer comprehensive support including 24/7 chat support, email assistance, phone support for 
+                enterprise customers, and a dedicated customer success manager for premium plans. You also have 
+                access to our knowledge base, video tutorials, and community forums.
+              </p>
+            </div>
+          </div>
+
+          <!-- FAQ Item 6 -->
+          <div class="faq-item bg-white rounded-xl shadow-md">
+            <button class="faq-question w-full text-left p-6 flex justify-between items-center hover:bg-gray-50 transition-colors">
+              <span class="text-lg font-semibold text-gray-900">Can I export my data if I decide to leave?</span>
+              <svg class="faq-icon w-6 h-6 text-gray-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+            <div class="faq-answer hidden px-6 pb-6">
+              <p class="text-gray-600 leading-relaxed">
+                Yes, you own your data completely. We provide easy data export tools that allow you to download 
+                all your data in standard formats (CSV, JSON, XML) at any time. There are no lock-in contracts, 
+                and we'll assist with the migration process if needed.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Popular Articles Section -->
+    <section class="container mx-auto px-6 mb-16">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Popular Articles</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">Getting Started</span>
+              <span class="text-sm text-gray-500">5 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Setting Up Your First Project</h3>
+            <p class="text-gray-600 mb-4">Learn how to create and configure your first project in Astradeis with this step-by-step guide.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Updated 2 days ago</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">API</span>
+              <span class="text-sm text-gray-500">8 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Authentication Best Practices</h3>
+            <p class="text-gray-600 mb-4">Secure your API integrations with proper authentication methods and security protocols.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Updated 1 week ago</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Account</span>
+              <span class="text-sm text-gray-500">3 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Managing Team Permissions</h3>
+            <p class="text-gray-600 mb-4">Control access levels and permissions for team members across different projects and features.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Updated 3 days ago</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-3 py-1 rounded-full">Troubleshooting</span>
+              <span class="text-sm text-gray-500">6 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Common Connection Issues</h3>
+            <p class="text-gray-600 mb-4">Resolve the most common connectivity problems and error messages you might encounter.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Updated 5 days ago</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Advanced</span>
+              <span class="text-sm text-gray-500">12 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Custom Dashboard Creation</h3>
+            <p class="text-gray-600 mb-4">Build powerful custom dashboards with advanced widgets and data visualization options.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Updated 1 week ago</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 overflow-hidden">
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-teal-100 text-teal-800 text-xs font-semibold px-3 py-1 rounded-full">Integration</span>
+              <span class="text-sm text-gray-500">10 min read</span>
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">Webhook Configuration Guide</h3>
+            <p class="text-gray-600 mb-4">Set up webhooks to receive real-time notifications and automate your workflows.</p>
+            <div class="flex items-center justify-between">
+              <span class="text-sm text-gray-500">Updated 4 days ago</span>
+              <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Read more →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Contact Support Section -->
+    <section class="container mx-auto px-6">
+      <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-12 text-white text-center">
+        <h2 class="text-3xl font-bold mb-4">Can't Find What You're Looking For?</h2>
+        <p class="text-xl mb-8 opacity-90">
+          Our support team is here to help you succeed. Get personalized assistance from our experts.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            Contact Support
+          </a>
+          <a href="/resources/quick-start-guides" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
+            Browse Guides
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // FAQ Toggle Functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+        
+        question.addEventListener('click', function() {
+          const isOpen = !answer.classList.contains('hidden');
+          
+          // Close all other FAQs
+          faqItems.forEach(otherItem => {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-icon');
+            otherAnswer.classList.add('hidden');
+            otherIcon.classList.remove('rotate-180');
+          });
+          
+          // Toggle current FAQ
+          if (!isOpen) {
+            answer.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+          }
+        });
+      });
+
+      // Search functionality
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        // In a real implementation, this would filter articles based on search term
+        console.log('Searching for:', searchTerm);
+      });
+
+      // Category filter functionality
+      const categoryCards = document.querySelectorAll('.category-card');
+      categoryCards.forEach(card => {
+        card.addEventListener('click', function() {
+          const category = this.getAttribute('data-category');
+          // In a real implementation, this would filter articles by category
+          console.log('Filter by category:', category);
+        });
+      });
+    });
+  </script>
+</PageLayout>

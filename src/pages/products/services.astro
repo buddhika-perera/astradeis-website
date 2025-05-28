@@ -1,0 +1,852 @@
+<!-- src/pages/services.astro -->
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import FeatureCard from '../components/common/FeatureCard.astro';
+import TestimonialSlider from '../components/sections/TestimonialSlider.astro';
+import FAQAccordion from '../components/sections/FAQAccordion.astro';
+import CallToAction from '../components/sections/CallToAction.astro';
+
+// Service categories
+const serviceCategories = [
+  {
+    title: "Aerial Data Collection",
+    description: "Professional drone pilots and equipment for comprehensive aerial surveys and mapping projects.",
+    icon: "fa-solid fa-helicopter",
+    url: "/services/data-collection"
+  },
+  {
+    title: "Data Processing & Analytics",
+    description: "Transform raw aerial data into actionable insights with our advanced processing capabilities.",
+    icon: "fa-solid fa-chart-line",
+    url: "/services/data-processing"
+  },
+  {
+    title: "Consulting & Implementation",
+    description: "Expert guidance on technology adoption, workflow optimization, and solution design.",
+    icon: "fa-solid fa-lightbulb",
+    url: "/services/consulting"
+  },
+  {
+    title: "Training & Certification",
+    description: "Comprehensive training programs for drone operations, data analysis, and software usage.",
+    icon: "fa-solid fa-graduation-cap",
+    url: "/services/training"
+  },
+  {
+    title: "Maintenance & Support",
+    description: "Ongoing technical support, equipment maintenance, and system optimization services.",
+    icon: "fa-solid fa-tools",
+    url: "/services/support"
+  },
+  {
+    title: "Custom Development",
+    description: "Tailored solutions, custom integrations, and specialized software development.",
+    icon: "fa-solid fa-code",
+    url: "/services/custom-development"
+  }
+];
+
+// Service packages
+const servicePackages = [
+  {
+    title: "Essentials",
+    price: "$2,500",
+    unit: "per project",
+    description: "Perfect for small to medium projects requiring professional aerial data collection",
+    features: [
+      "Up to 100 hectares coverage",
+      "RGB imagery collection",
+      "Basic orthomosaic processing",
+      "Standard deliverables package",
+      "5 business day turnaround",
+      "Email support"
+    ],
+    cta: "Get Started",
+    popular: false
+  },
+  {
+    title: "Professional",
+    price: "$5,500",
+    unit: "per project",
+    description: "Comprehensive solution for complex projects with advanced analytics requirements",
+    features: [
+      "Up to 500 hectares coverage",
+      "Multi-sensor data collection",
+      "Advanced processing & analytics",
+      "3D models and point clouds",
+      "Custom reporting dashboard",
+      "Priority support",
+      "3 business day turnaround",
+      "Progress monitoring portal"
+    ],
+    cta: "Choose Professional",
+    popular: true
+  },
+  {
+    title: "Enterprise",
+    price: "Custom",
+    unit: "pricing",
+    description: "Full-scale solutions for large organizations with ongoing requirements",
+    features: [
+      "Unlimited coverage area",
+      "Multiple sensor configurations",
+      "Real-time data streaming",
+      "API integrations",
+      "Dedicated project manager",
+      "24/7 priority support",
+      "Custom SLA agreements",
+      "On-site training included",
+      "Flexible scheduling options"
+    ],
+    cta: "Contact Sales",
+    popular: false
+  }
+];
+
+// Implementation process
+const processSteps = [
+  {
+    step: "01",
+    title: "Discovery & Planning",
+    description: "We analyze your requirements, site conditions, and objectives to develop the optimal approach.",
+    icon: "fa-solid fa-search"
+  },
+  {
+    step: "02", 
+    title: "Solution Design",
+    description: "Our team creates a customized solution plan including equipment, sensors, and processing workflows.",
+    icon: "fa-solid fa-drafting-compass"
+  },
+  {
+    step: "03",
+    title: "Data Collection",
+    description: "Professional execution of aerial surveys using calibrated equipment and experienced pilots.",
+    icon: "fa-solid fa-drone"
+  },
+  {
+    step: "04",
+    title: "Processing & Analysis",
+    description: "Advanced data processing to generate high-quality deliverables and actionable insights.",
+    icon: "fa-solid fa-microchip"
+  },
+  {
+    step: "05",
+    title: "Delivery & Support",
+    description: "Comprehensive deliverables package with ongoing support and training as needed.",
+    icon: "fa-solid fa-handshake"
+  }
+];
+
+// Testimonials
+const testimonials = [
+  {
+    quote: "Astradeis transformed our project workflow. Their end-to-end service approach meant we could focus on our core business while they handled all the technical complexities of aerial data collection and processing.",
+    author: "Michael Chen",
+    position: "Project Director",
+    company: "Infrastructure Development Corp"
+  },
+  {
+    quote: "The training program was exceptional. Our team went from zero drone experience to confidently managing our own aerial data collection program in just two weeks.",
+    author: "Sarah Williams",
+    position: "Operations Manager", 
+    company: "Agricultural Services Ltd"
+  },
+  {
+    quote: "What sets Astradeis apart is their consulting approach. They don't just provide services—they become your partner in optimizing operations and achieving better outcomes.",
+    author: "David Rodriguez",
+    position: "Technology Director",
+    company: "Mining Solutions Group"
+  }
+];
+
+// FAQs
+const faqs = [
+  {
+    question: "What types of projects do you typically handle?",
+    answer: "We handle projects across agriculture, construction, mining, environmental monitoring, and infrastructure inspection. Project sizes range from single-site surveys of a few hectares to multi-site programs covering thousands of hectares. Our services adapt to your specific industry requirements and technical specifications."
+  },
+  {
+    question: "How long does a typical project take from start to finish?",
+    answer: "Timeline depends on project scope and complexity. Simple surveys can be completed within 1-2 weeks, while comprehensive projects may take 4-6 weeks. We provide detailed project timelines during the planning phase and offer expedited services for urgent requirements."
+  },
+  {
+    question: "Do you provide training for our internal teams?",
+    answer: "Yes, we offer comprehensive training programs covering drone operations, data collection best practices, software usage, and regulatory compliance. Training can be conducted on-site or at our facilities, with both theoretical and hands-on components tailored to your team's experience level."
+  },
+  {
+    question: "What data formats and deliverables do you provide?",
+    answer: "We provide industry-standard formats including GeoTIFF orthomosaics, LAS/LAZ point clouds, DXF/DWG CAD files, and PDF reports. All deliverables include metadata, coordinate system information, and quality control documentation. Custom formats can be provided based on your specific requirements."
+  },
+  {
+    question: "Can you integrate with our existing software and workflows?",
+    answer: "Absolutely. We work with all major GIS, CAD, and project management platforms. Our team can develop custom integrations and API connections to ensure seamless data flow into your existing systems. We also provide workflow consulting to optimize your processes."
+  }
+];
+---
+
+<BaseLayout 
+  title="Professional Services" 
+  description="Comprehensive aerial intelligence services including data collection, processing, consulting, and training for diverse industries."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="Professional Aerial Intelligence Services" 
+    subtitle="End-to-end solutions from data collection to actionable insights"
+    backgroundImage="/images/services/services-hero.jpg">
+    <div class="hero-buttons">
+      <a href="/contact?service=consultation" class="btn primary-btn">Schedule Consultation</a>
+      <a href="#packages" class="btn secondary-btn">View Packages</a>
+    </div>
+  </HeroSection>
+  
+  <!-- Services Introduction -->
+  <section class="services-intro">
+    <div class="container">
+      <div class="intro-content">
+        <h2>Complete Aerial Intelligence Solutions</h2>
+        <p>Astradeis provides comprehensive professional services that transform how organizations collect, process, and utilize aerial data. From initial consultation through project delivery and ongoing support, we serve as your trusted partner in aerial intelligence.</p>
+        
+        <p>Our multidisciplinary team combines expertise in drone operations, remote sensing, data science, and industry-specific applications to deliver solutions that drive real business value.</p>
+      </div>
+      
+      <div class="service-stats">
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Projects completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Industries served</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">98%</span>
+          <span class="stat-label">Client satisfaction</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Service Categories -->
+  <section class="service-categories">
+    <div class="container">
+      <h2 class="section-title">Our Service Offerings</h2>
+      <p class="section-subtitle">Comprehensive solutions across the aerial intelligence spectrum</p>
+      
+      <div class="categories-grid">
+        {serviceCategories.map(category => (
+          <FeatureCard
+            title={category.title}
+            description={category.description}
+            icon={category.icon}
+            url={category.url}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Service Packages -->
+  <section id="packages" class="pricing-section">
+    <div class="container">
+      <h2 class="section-title">Service Packages</h2>
+      <p class="section-subtitle">Flexible solutions designed to meet your specific needs and budget</p>
+      
+      <div class="pricing-grid">
+        {servicePackages.map(package => (
+          <div class={`pricing-card ${package.popular ? 'popular' : ''}`}>
+            {package.popular && <div class="popular-badge">Most Popular</div>}
+            <div class="package-header">
+              <h3 class="package-title">{package.title}</h3>
+              <div class="price-display">
+                <span class="price">{package.price}</span>
+                <span class="unit">{package.unit}</span>
+              </div>
+              <p class="package-description">{package.description}</p>
+            </div>
+            
+            <div class="package-features">
+              <ul class="features-list">
+                {package.features.map(feature => (
+                  <li>
+                    <i class="fa-solid fa-check"></i>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="package-footer">
+              <a href="/contact?package={package.title.toLowerCase()}" class="package-button">
+                {package.cta}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <div class="pricing-note">
+        <p>All packages include comprehensive quality assurance, data validation, and basic technical support. <a href="/contact">Contact us</a> for custom enterprise solutions.</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Process Overview -->
+  <section class="process-section">
+    <div class="container">
+      <h2 class="section-title">Our Service Process</h2>
+      <p class="section-subtitle">A proven methodology that ensures successful project outcomes</p>
+      
+      <div class="process-timeline">
+        {processSteps.map((step, index) => (
+          <div class="process-step">
+            <div class="step-indicator">
+              <span class="step-number">{step.step}</span>
+              <div class="step-icon">
+                <i class={step.icon}></i>
+              </div>
+            </div>
+            <div class="step-content">
+              <h3 class="step-title">{step.title}</h3>
+              <p class="step-description">{step.description}</p>
+            </div>
+            {index < processSteps.length - 1 && <div class="step-connector"></div>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Industry Applications -->
+  <section class="applications-section">
+    <div class="container">
+      <h2 class="section-title">Industry Applications</h2>
+      <p class="section-subtitle">Specialized services tailored to your industry's unique requirements</p>
+      
+      <div class="applications-grid">
+        <div class="application-item">
+          <div class="app-icon">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3>Agriculture</h3>
+          <p>Crop health monitoring, yield estimation, irrigation management, and precision application mapping.</p>
+          <a href="/industries/agriculture" class="app-link">Learn More</a>
+        </div>
+        
+        <div class="application-item">
+          <div class="app-icon">
+            <i class="fa-solid fa-hard-hat"></i>
+          </div>
+          <h3>Construction</h3>
+          <p>Progress monitoring, volumetric analysis, safety inspections, and as-built documentation.</p>
+          <a href="/industries/construction" class="app-link">Learn More</a>
+        </div>
+        
+        <div class="application-item">
+          <div class="app-icon">
+            <i class="fa-solid fa-mountain"></i>
+          </div>
+          <h3>Mining</h3>
+          <p>Stockpile measurement, pit progression tracking, environmental compliance, and safety monitoring.</p>
+          <a href="/industries/mining" class="app-link">Learn More</a>
+        </div>
+        
+        <div class="application-item">
+          <div class="app-icon">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3>Environmental</h3>
+          <p>Habitat assessment, pollution monitoring, ecosystem analysis, and conservation planning.</p>
+          <a href="/industries/environmental" class="app-link">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Testimonials -->
+  <TestimonialSlider
+    title="What Our Clients Say"
+    testimonials={testimonials}
+  />
+  
+  <!-- FAQ Section -->
+  <FAQAccordion
+    title="Frequently Asked Questions"
+    faqs={faqs}
+  />
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Ready to Get Started?"
+    text="Schedule a consultation with our service experts to discuss your specific requirements and develop a customized solution."
+    buttonText="Schedule Consultation"
+    buttonUrl="/contact?service=consultation"
+    backgroundImage="/images/cta/consultation-meeting.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .primary-btn {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .primary-btn:hover {
+    background-color: var(--color-teal-dark);
+    transform: translateY(-2px);
+  }
+  
+  .secondary-btn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .secondary-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Services Introduction */
+  .services-intro {
+    padding: 4rem 0;
+  }
+  
+  .intro-content {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .intro-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .intro-content p {
+    color: #444;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .service-stats {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    color: #666;
+  }
+  
+  /* Service Categories */
+  .service-categories {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  /* Pricing Section */
+  .pricing-section {
+    padding: 4rem 0;
+  }
+  
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .pricing-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+    overflow: hidden;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .pricing-card.popular {
+    border: 2px solid var(--color-teal);
+    transform: scale(1.02);
+  }
+  
+  .pricing-card.popular:hover {
+    transform: scale(1.02) translateY(-5px);
+  }
+  
+  .popular-badge {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-teal);
+    color: white;
+    text-align: center;
+    padding: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+  
+  .package-header {
+    padding: 2rem 2rem 1rem;
+    text-align: center;
+  }
+  
+  .pricing-card.popular .package-header {
+    padding-top: 3rem;
+  }
+  
+  .package-title {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .price-display {
+    margin-bottom: 1rem;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-teal);
+  }
+  
+  .unit {
+    font-size: 1rem;
+    color: #666;
+    margin-left: 0.5rem;
+  }
+  
+  .package-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .package-features {
+    padding: 0 2rem;
+    flex-grow: 1;
+  }
+  
+  .features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .features-list li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    color: #444;
+  }
+  
+  .features-list i {
+    color: var(--color-teal);
+    margin-right: 0.75rem;
+    margin-top: 0.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .package-footer {
+    padding: 1.5rem 2rem 2rem;
+  }
+  
+  .package-button {
+    display: block;
+    width: 100%;
+    background-color: var(--color-teal);
+    color: white;
+    text-align: center;
+    padding: 0.75rem;
+    border-radius: 4px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .package-button:hover {
+    background-color: var(--color-teal-dark);
+  }
+  
+  .pricing-note {
+    text-align: center;
+    color: #666;
+    font-size: 0.95rem;
+  }
+  
+  .pricing-note a {
+    color: var(--color-teal);
+    font-weight: 600;
+  }
+  
+  /* Process Section */
+  .process-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .process-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    position: relative;
+  }
+  
+  .step-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+  }
+  
+  .step-number {
+    background-color: var(--color-teal);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  
+  .step-icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-teal);
+  }
+  
+  .step-content {
+    flex: 1;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .step-title {
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .step-description {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .step-connector {
+    position: absolute;
+    left: 39px;
+    top: 80px;
+    width: 2px;
+    height: 60px;
+    background-color: var(--color-light-gray);
+  }
+  
+  .process-step:last-child .step-connector {
+    display: none;
+  }
+  
+  /* Applications Section */
+  .applications-section {
+    padding: 4rem 0;
+  }
+  
+  .applications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .application-item {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .application-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .app-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--color-teal);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .application-item:hover .app-icon {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .application-item h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .application-item p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .app-link {
+    color: var(--color-teal);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .app-link:hover {
+    color: var(--color-teal-dark);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .process-timeline {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .pricing-card.popular {
+      transform: none;
+    }
+    
+    .pricing-card.popular:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .service-stats {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .process-step {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .step-connector {
+      display: none;
+    }
+  }
+</style>

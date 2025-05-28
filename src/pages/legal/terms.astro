@@ -1,0 +1,366 @@
+<!-- src/pages/legal/terms.astro -->
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+// Current date for last updated
+const currentDate = new Date();
+const formattedDate = currentDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long', 
+  day: 'numeric'
+});
+---
+
+<BaseLayout 
+  title="Terms of Service" 
+  description="Astradeis Terms of Service - Terms and conditions for using our products and services."
+>
+  
+  <div class="legal-page">
+    <div class="container">
+      <div class="legal-header">
+        <h1>Terms of Service</h1>
+        <p class="last-updated">Last Updated: {formattedDate}</p>
+      </div>
+      
+      <div class="legal-content">
+        <section class="terms-section">
+          <h2>1. Agreement to Terms</h2>
+          <p>By accessing and using Astradeis Pty Ltd's ("Astradeis," "we," "us," or "our") website, products, or services, you ("User," "you," or "your") agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, then you may not access our services.</p>
+          
+          <p>These Terms apply to all visitors, users, and others who access or use our services, including our website, drone services, data processing, consulting, and any related products or services.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>2. Description of Services</h2>
+          <p>Astradeis provides aerial intelligence solutions including:</p>
+          <ul>
+            <li>Professional drone data collection services</li>
+            <li>Aerial data processing and analytics</li>
+            <li>Consulting and implementation services</li>
+            <li>Training and certification programs</li>
+            <li>Software platforms and tools</li>
+            <li>Equipment sales and support</li>
+          </ul>
+          
+          <p>We reserve the right to modify, suspend, or discontinue any aspect of our services at any time with reasonable notice to affected users.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>3. User Accounts and Registration</h2>
+          <p>Some features of our services may require you to create an account. When creating an account, you must provide accurate, complete, and current information. You are responsible for:</p>
+          
+          <ul>
+            <li>Maintaining the confidentiality of your account credentials</li>
+            <li>All activities that occur under your account</li>
+            <li>Notifying us immediately of any unauthorized use</li>
+            <li>Ensuring your account information remains accurate and up-to-date</li>
+          </ul>
+          
+          <p>We reserve the right to suspend or terminate accounts that violate these Terms or are inactive for extended periods.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>4. Acceptable Use Policy</h2>
+          <p>You agree to use our services only for lawful purposes and in accordance with these Terms. You agree not to:</p>
+          
+          <ul>
+            <li>Use our services for any illegal or unauthorized purpose</li>
+            <li>Violate any laws, regulations, or third-party rights</li>
+            <li>Interfere with or disrupt our services or servers</li>
+            <li>Attempt to gain unauthorized access to our systems</li>
+            <li>Use our services to collect data about other users without consent</li>
+            <li>Reverse engineer, decompile, or disassemble our software</li>
+            <li>Use our services in any way that could damage our reputation</li>
+          </ul>
+        </section>
+        
+        <section class="terms-section">
+          <h2>5. Service Terms and Delivery</h2>
+          <h3>Professional Services</h3>
+          <p>For professional services including data collection, processing, and consulting:</p>
+          <ul>
+            <li>Services are provided according to agreed specifications and timelines</li>
+            <li>Weather conditions may affect data collection schedules</li>
+            <li>Regulatory approvals may be required and could affect timing</li>
+            <li>Final deliverables are subject to quality control processes</li>
+          </ul>
+          
+          <h3>Equipment and Software</h3>
+          <p>For equipment sales and software licenses:</p>
+          <ul>
+            <li>Products are provided "as is" with applicable warranties</li>
+            <li>Software licenses are non-transferable unless otherwise specified</li>
+            <li>Updates and support are provided according to service agreements</li>
+            <li>Training and installation services may be separately contracted</li>
+          </ul>
+        </section>
+        
+        <section class="terms-section">
+          <h2>6. Payment Terms</h2>
+          <p>Payment terms vary by service type and are specified in individual agreements:</p>
+          
+          <h3>General Payment Terms</h3>
+          <ul>
+            <li>Payment is due according to agreed terms, typically net 30 days</li>
+            <li>Late payments may incur interest charges at statutory rates</li>
+            <li>All prices are exclusive of taxes unless otherwise stated</li>
+            <li>Currency for payments is Australian Dollars (AUD) unless otherwise specified</li>
+          </ul>
+          
+          <h3>Refund Policy</h3>
+          <ul>
+            <li>Refunds for services are handled case-by-case based on circumstances</li>
+            <li>Equipment returns are subject to our return policy and restocking fees</li>
+            <li>Software licenses are generally non-refundable after activation</li>
+            <li>Force majeure events may result in service credits rather than refunds</li>
+          </ul>
+        </section>
+        
+        <section class="terms-section">
+          <h2>7. Intellectual Property Rights</h2>
+          <h3>Our Intellectual Property</h3>
+          <p>All content, features, and functionality of our services, including but not limited to text, graphics, logos, software, and methodologies, are owned by Astradeis and protected by copyright, trademark, and other intellectual property laws.</p>
+          
+          <h3>Client Data and Deliverables</h3>
+          <p>For professional services:</p>
+          <ul>
+            <li>Clients retain ownership of raw data collected specifically for them</li>
+            <li>Processed deliverables are licensed to clients for agreed purposes</li>
+            <li>We retain rights to methodologies and technical processes</li>
+            <li>Anonymized data may be used for research and development purposes</li>
+          </ul>
+          
+          <h3>License to Use Our Services</h3>
+          <p>We grant you a limited, non-exclusive, non-transferable license to use our services in accordance with these Terms. This license automatically terminates if you violate any of these Terms.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>8. Data Protection and Privacy</h2>
+          <p>Your privacy is important to us. Our collection and use of personal information is governed by our Privacy Policy, which is incorporated into these Terms by reference.</p>
+          
+          <p>For professional services involving data collection:</p>
+          <ul>
+            <li>We implement appropriate security measures to protect collected data</li>
+            <li>Data is processed only for agreed purposes</li>
+            <li>Third-party data sharing requires explicit consent</li>
+            <li>Data retention periods are specified in service agreements</li>
+          </ul>
+        </section>
+        
+        <section class="terms-section">
+          <h2>9. Liability and Disclaimers</h2>
+          <h3>Service Availability</h3>
+          <p>While we strive to provide reliable services, we do not guarantee uninterrupted or error-free operation. Services may be temporarily unavailable for maintenance, updates, or due to circumstances beyond our control.</p>
+          
+          <h3>Limitation of Liability</h3>
+          <p>To the maximum extent permitted by law, Astradeis shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or business opportunities.</p>
+          
+          <p>Our total liability for any claim arising from or relating to these Terms or our services shall not exceed the amount paid by you for the specific service giving rise to the claim in the 12 months preceding the claim.</p>
+          
+          <h3>Force Majeure</h3>
+          <p>We shall not be liable for any delay or failure to perform due to circumstances beyond our reasonable control, including but not limited to acts of God, weather conditions, government actions, or technical failures.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>10. Professional Standards and Compliance</h2>
+          <p>Astradeis operates in accordance with:</p>
+          <ul>
+            <li>Australian civil aviation regulations (CASA)</li>
+            <li>International aviation safety standards</li>
+            <li>Professional surveying and mapping standards</li>
+            <li>Environmental protection regulations</li>
+            <li>Data protection and privacy laws</li>
+          </ul>
+          
+          <p>Clients are responsible for obtaining necessary permits and approvals for services performed on their behalf, unless specifically agreed otherwise.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>11. Termination</h2>
+          <p>Either party may terminate service agreements according to the terms specified in individual contracts. General termination provisions include:</p>
+          
+          <ul>
+            <li>Immediate termination for material breach after notice and opportunity to cure</li>
+            <li>Termination for convenience with appropriate notice period</li>
+            <li>Automatic termination upon insolvency or bankruptcy</li>
+            <li>Survival of payment obligations and confidentiality terms</li>
+          </ul>
+          
+          <p>Upon termination, you must cease using our services and return or destroy any confidential information.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>12. Dispute Resolution</h2>
+          <h3>Governing Law</h3>
+          <p>These Terms are governed by the laws of New South Wales, Australia, without regard to conflict of law principles.</p>
+          
+          <h3>Dispute Resolution Process</h3>
+          <p>Before initiating formal legal proceedings, parties agree to attempt resolution through:</p>
+          <ol>
+            <li>Direct negotiation between authorized representatives</li>
+            <li>Mediation through a mutually agreed mediator</li>
+            <li>If unsuccessful, binding arbitration in Sydney, Australia</li>
+          </ol>
+          
+          <h3>Jurisdiction</h3>
+          <p>For disputes that cannot be resolved through the above process, the courts of New South Wales, Australia shall have exclusive jurisdiction.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>13. Changes to Terms</h2>
+          <p>We may modify these Terms at any time by posting the updated version on our website. Material changes will be communicated to active users via email or prominent notice on our website.</p>
+          
+          <p>Continued use of our services after changes constitute acceptance of the modified Terms. If you do not agree to the changes, you must discontinue use of our services.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>14. General Provisions</h2>
+          <h3>Entire Agreement</h3>
+          <p>These Terms, together with our Privacy Policy and any specific service agreements, constitute the entire agreement between you and Astradeis regarding your use of our services.</p>
+          
+          <h3>Severability</h3>
+          <p>If any provision of these Terms is found to be invalid or unenforceable, the remaining provisions will remain in full force and effect.</p>
+          
+          <h3>Assignment</h3>
+          <p>You may not assign your rights or obligations under these Terms without our written consent. We may assign our rights and obligations without restriction.</p>
+          
+          <h3>Waiver</h3>
+          <p>Our failure to enforce any provision of these Terms does not constitute a waiver of that provision or any other provision.</p>
+        </section>
+        
+        <section class="terms-section">
+          <h2>15. Contact Information</h2>
+          <p>For questions about these Terms of Service, please contact us:</p>
+          
+          <div class="contact-info">
+            <p><strong>Astradeis Pty Ltd</strong></p>
+            <p><strong>Address:</strong> 10 Lorem Ipsum Street, Falloutville, NSW 2000, Australia</p>
+            <p><strong>Phone:</strong> +61 (0)2 1234 5678</p>
+            <p><strong>Email:</strong> legal@astradeis.com</p>
+            <p><strong>ABN:</strong> 10 123 345 456</p>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .legal-page {
+    padding: 4rem 0;
+  }
+  
+  .legal-header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  
+  .legal-header h1 {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .last-updated {
+    color: #666;
+    font-style: italic;
+  }
+  
+  .legal-content {
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .terms-section {
+    margin-bottom: 2.5rem;
+  }
+  
+  .terms-section h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .terms-section h3 {
+    margin: 1.5rem 0 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .terms-section p, 
+  .terms-section ul, 
+  .terms-section ol {
+    margin-bottom: 1rem;
+  }
+  
+  .terms-section ul, 
+  .terms-section ol {
+    padding-left: 1.5rem;
+  }
+  
+  .terms-section li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-info {
+    background-color: var(--color-soft-white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+  }
+  
+  .contact-info p {
+    margin-bottom: 0.5rem;
+  }
+  
+  .contact-info p:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .legal-page {
+      padding: 3rem 0;
+    }
+    
+    .legal-header {
+      margin-bottom: 2rem;
+    }
+    
+    .legal-header h1 {
+      font-size: 2rem;
+    }
+    
+    .terms-section h2 {
+      font-size: 1.5rem;
+    }
+    
+    .terms-section h3 {
+      font-size: 1.3rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .legal-header h1 {
+      font-size: 1.8rem;
+    }
+    
+    .terms-section h2 {
+      font-size: 1.4rem;
+    }
+    
+    .terms-section h3 {
+      font-size: 1.2rem;
+    }
+  }
+</style>

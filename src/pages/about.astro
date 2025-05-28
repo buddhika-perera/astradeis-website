@@ -1,0 +1,1053 @@
+<!-- src/pages/about.astro -->
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import CallToAction from '../components/sections/CallToAction.astro';
+
+// Team members data
+const teamMembers = [
+  {
+    name: "Alexandra Chen",
+    position: "Chief Executive Officer & Co-Founder",
+    bio: "Alexandra brings over 20 years of aerospace engineering experience to Astradeis. Previously, she led product development at Boeing's drone division and holds a Master's in Aerospace Engineering from MIT. Her vision drives our innovation in aerial intelligence solutions.",
+    image: "/images/team/alexandra-chen.jpg",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    name: "David Wilson",
+    position: "Chief Technology Officer & Co-Founder",
+    bio: "With a PhD in Computer Vision from Stanford, David oversees all technology development at Astradeis. His research on autonomous navigation systems has been published in leading journals, and he holds 12 patents in drone technology.",
+    image: "/images/team/david-wilson.jpg",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    name: "Maria Rodriguez",
+    position: "VP of Product Development",
+    bio: "Maria's background in mechanical engineering and sensor technology has been instrumental in developing our advanced payload systems. She leads our interdisciplinary product teams and has 15 years of experience in precision instrumentation.",
+    image: "/images/team/maria-rodriguez.jpg",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    name: "James Patel",
+    position: "Director of Operations",
+    bio: "James brings extensive experience in manufacturing and supply chain management from his time at Tesla. He oversees all production and logistics operations, ensuring our technology reaches clients efficiently and reliably.",
+    image: "/images/team/james-patel.jpg",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    name: "Sarah Johnson",
+    position: "Head of Agriculture Solutions",
+    bio: "With a background in agronomy and remote sensing, Sarah leads our agricultural technology division. She has published extensively on precision farming applications and works closely with agricultural research institutions worldwide.",
+    image: "/images/team/sarah-johnson.jpg",
+    linkedin: "#",
+    twitter: "#"
+  },
+  {
+    name: "Michael Chang",
+    position: "Director of Software Engineering",
+    bio: "Michael leads our software development team, bringing expertise in cloud architecture and AI from his previous roles at Microsoft and Amazon. He oversees the development of our data processing and analytics platforms.",
+    image: "/images/team/michael-chang.jpg",
+    linkedin: "#",
+    twitter: "#"
+  }
+];
+
+// Timeline events
+const timelineEvents = [
+  {
+    year: "2018",
+    title: "Company Founded",
+    description: "Astradeis was founded by Alexandra Chen and David Wilson with a vision to transform industrial aerial data collection and analysis."
+  },
+  {
+    year: "2019",
+    title: "First Prototype",
+    description: "Development of our first drone prototype, featuring modular sensor mounts and extended flight time capabilities."
+  },
+  {
+    year: "2020",
+    title: "Seed Funding",
+    description: "Secured $5 million in seed funding to expand research and development operations and establish our Sydney headquarters."
+  },
+  {
+    year: "2021",
+    title: "Product Launch",
+    description: "Official launch of the Surveyor Pro platform, including integrated hardware and software solutions for professional applications."
+  },
+  {
+    year: "2022",
+    title: "Agricultural Focus",
+    description: "Development of specialized agricultural solutions leading to partnerships with major farming operations across Australia."
+  },
+  {
+    year: "2023",
+    title: "International Expansion",
+    description: "Opened offices in Europe and Asia, expanding our global reach and support capabilities to serve clients worldwide."
+  },
+  {
+    year: "2024",
+    title: "Series B Funding",
+    description: "Raised $30 million in Series B funding to accelerate product development and market expansion into new industries."
+  }
+];
+
+// Core values
+const coreValues = [
+  {
+    title: "Innovation",
+    description: "We constantly push the boundaries of what's possible in aerial technology, seeking creative solutions to complex problems.",
+    icon: "fa-solid fa-lightbulb"
+  },
+  {
+    title: "Precision",
+    description: "We are committed to delivering accurate, reliable data that our customers can trust to make critical decisions.",
+    icon: "fa-solid fa-bullseye"
+  },
+  {
+    title: "Sustainability",
+    description: "We develop technologies that help our customers optimize resource usage and reduce environmental impact.",
+    icon: "fa-solid fa-leaf"
+  },
+  {
+    title: "Collaboration",
+    description: "We work closely with our customers and partners to develop solutions that address real-world challenges.",
+    icon: "fa-solid fa-handshake"
+  }
+];
+
+// Awards and certifications
+const awards = [
+  {
+    title: "Australian Innovation Award 2023",
+    organization: "Innovation Australia",
+    description: "Recognized for breakthrough technology in precision agriculture applications"
+  },
+  {
+    title: "Best Drone Technology Company",
+    organization: "Tech Awards Asia-Pacific 2023",
+    description: "Leading innovation in commercial drone applications"
+  },
+  {
+    title: "ISO 9001:2015 Certified",
+    organization: "International Organization for Standardization",
+    description: "Quality management systems certification"
+  },
+  {
+    title: "CASA Certified Operator",
+    organization: "Civil Aviation Safety Authority",
+    description: "Licensed for commercial drone operations in Australia"
+  }
+];
+
+// Partner logos
+const partners = [
+  {
+    name: "AgriTech Solutions",
+    logo: "/images/partners/agritech-logo.png"
+  },
+  {
+    name: "GeoSpatial Innovations",
+    logo: "/images/partners/geospatial-logo.png"
+  },
+  {
+    name: "BuildRight Construction",
+    logo: "/images/partners/buildright-logo.png"
+  },
+  {
+    name: "MineMap Technologies",
+    logo: "/images/partners/minemap-logo.png"
+  },
+  {
+    name: "EnviroScan Systems",
+    logo: "/images/partners/enviroscan-logo.png"
+  },
+  {
+    name: "SensorTech Corp",
+    logo: "/images/partners/sensortech-logo.png"
+  }
+];
+---
+
+<BaseLayout 
+  title="About Us" 
+  description="Learn about Astradeis, our mission, our team, and our journey to transform aerial data collection and analysis."
+>
+  
+  <!-- Hero Section -->
+  <HeroSection 
+    title="About Astradeis" 
+    subtitle="Transforming industries through advanced aerial technology and data intelligence"
+    backgroundImage="/images/about/about-hero.jpg">
+  </HeroSection>
+  
+  <!-- Mission and Vision -->
+  <section class="mission-vision">
+    <div class="container">
+      <div class="mission-vision-content">
+        <div class="mission">
+          <div class="icon">
+            <i class="fa-solid fa-rocket"></i>
+          </div>
+          <h2>Our Mission</h2>
+          <p>To empower organizations with actionable aerial intelligence that drives efficiency, sustainability, and innovation across diverse industries.</p>
+        </div>
+        
+        <div class="vision">
+          <div class="icon">
+            <i class="fa-solid fa-eye"></i>
+          </div>
+          <h2>Our Vision</h2>
+          <p>A world where aerial data collection is seamlessly integrated into every industry, providing insights that were previously impossible to obtain.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Company Story -->
+  <section class="company-story">
+    <div class="container">
+      <div class="story-content">
+        <h2>Our Story</h2>
+        <p>Astradeis was founded in 2018 by Alexandra Chen and David Wilson, who recognized the untapped potential of drone technology in industrial applications. With backgrounds in aerospace engineering and computer vision, they set out to develop solutions that would transform how organizations collect and analyze aerial data.</p>
+        
+        <p>What began as a small team working in a Sydney warehouse has grown into a global company with offices across Australia, North America, Europe, and Asia. Throughout our growth, we've maintained our focus on innovation, quality, and customer success.</p>
+        
+        <p>Today, Astradeis is recognized as a leader in specialized drone technology for industrial applications. Our solutions are used in agriculture, construction, mining, and environmental monitoring across the globe, helping organizations make better decisions with comprehensive aerial intelligence.</p>
+        
+        <p>We've completed over 500 projects, served clients in more than 25 countries, and continue to push the boundaries of what's possible with aerial technology. Our commitment to research and development has resulted in 12 patents and numerous industry awards.</p>
+      </div>
+      
+      <div class="story-image">
+        <img src="/images/about/company-founders.jpg" alt="Astradeis founders Alexandra Chen and David Wilson" />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Core Values -->
+  <section class="core-values">
+    <div class="container">
+      <h2 class="section-title">Our Core Values</h2>
+      <p class="section-subtitle">The principles that guide everything we do</p>
+      
+      <div class="values-grid">
+        {coreValues.map(value => (
+          <div class="value-card">
+            <div class="value-icon">
+              <i class={value.icon}></i>
+            </div>
+            <h3>{value.title}</h3>
+            <p>{value.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Company Timeline -->
+  <section class="company-timeline">
+    <div class="container">
+      <h2 class="section-title">Our Journey</h2>
+      <p class="section-subtitle">Key milestones in our company's evolution</p>
+      
+      <div class="timeline">
+        {timelineEvents.map((event, index) => (
+          <div class={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
+            <div class="timeline-content">
+              <div class="year">{event.year}</div>
+              <h3>{event.title}</h3>
+              <p>{event.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Team Section -->
+  <section class="team-section">
+    <div class="container">
+      <h2 class="section-title">Meet Our Leadership Team</h2>
+      <p class="section-subtitle">The passionate experts behind our innovative technology</p>
+      
+      <div class="team-grid">
+        {teamMembers.map(member => (
+          <div class="team-member">
+            <div class="member-image">
+              <img src={member.image} alt={member.name} />
+              <div class="member-overlay">
+                <div class="social-links">
+                  <a href={member.linkedin} aria-label={`${member.name}'s LinkedIn profile`}>
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                  <a href={member.twitter} aria-label={`${member.name}'s Twitter profile`}>
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">{member.name}</h3>
+              <p class="member-position">{member.position}</p>
+              <p class="member-bio">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Awards and Recognition -->
+  <section class="awards-section">
+    <div class="container">
+      <h2 class="section-title">Awards & Recognition</h2>
+      <p class="section-subtitle">Industry recognition for our innovation and excellence</p>
+      
+      <div class="awards-grid">
+        {awards.map(award => (
+          <div class="award-item">
+            <div class="award-icon">
+              <i class="fa-solid fa-trophy"></i>
+            </div>
+            <h3>{award.title}</h3>
+            <p class="award-org">{award.organization}</p>
+            <p class="award-desc">{award.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Global Presence -->
+  <section class="global-presence">
+    <div class="container">
+      <h2 class="section-title">Our Global Presence</h2>
+      <p class="section-subtitle">With operations in major markets across the globe, we're ready to support your needs wherever you are</p>
+      
+      <div class="regions">
+        <div class="region">
+          <div class="region-icon">
+            <i class="fa-solid fa-globe-asia"></i>
+          </div>
+          <h3>Asia Pacific</h3>
+          <ul>
+            <li>Sydney, Australia (HQ)</li>
+            <li>Melbourne, Australia</li>
+            <li>Singapore</li>
+            <li>Tokyo, Japan</li>
+            <li>New Delhi, India</li>
+          </ul>
+        </div>
+        
+        <div class="region">
+          <div class="region-icon">
+            <i class="fa-solid fa-globe-americas"></i>
+          </div>
+          <h3>Americas</h3>
+          <ul>
+            <li>San Francisco, USA</li>
+            <li>Denver, USA</li>
+            <li>Toronto, Canada</li>
+            <li>Mexico City, Mexico</li>
+            <li>São Paulo, Brazil</li>
+          </ul>
+        </div>
+        
+        <div class="region">
+          <div class="region-icon">
+            <i class="fa-solid fa-globe-europe"></i>
+          </div>
+          <h3>Europe & Middle East</h3>
+          <ul>
+            <li>London, UK</li>
+            <li>Berlin, Germany</li>
+            <li>Paris, France</li>
+            <li>Dubai, UAE</li>
+            <li>Stockholm, Sweden</li>
+          </ul>
+        </div>
+        
+        <div class="region">
+          <div class="region-icon">
+            <i class="fa-solid fa-globe-africa"></i>
+          </div>
+          <h3>Africa</h3>
+          <ul>
+            <li>Johannesburg, South Africa</li>
+            <li>Nairobi, Kenya</li>
+            <li>Cairo, Egypt</li>
+            <li>Lagos, Nigeria</li>
+            <li>Accra, Ghana</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Partners Section -->
+  <section class="partners-section">
+    <div class="container">
+      <h2 class="section-title">Our Trusted Partners</h2>
+      <p class="section-subtitle">Working together to drive innovation across industries</p>
+      
+      <div class="partners-grid">
+        {partners.map(partner => (
+          <div class="partner">
+            <img src={partner.logo} alt={partner.name} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  
+  <!-- Company Stats -->
+  <section class="company-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fa-solid fa-briefcase"></i>
+          </div>
+          <span class="stat-number">500+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <span class="stat-number">25+</span>
+          <span class="stat-label">Countries Served</span>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <span class="stat-number">150+</span>
+          <span class="stat-label">Team Members</span>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fa-solid fa-patent"></i>
+          </div>
+          <span class="stat-number">12</span>
+          <span class="stat-label">Patents Held</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Call to Action -->
+  <CallToAction
+    title="Join Us on Our Mission"
+    text="We're always looking for talented individuals and innovative partners to help shape the future of aerial technology."
+    buttonText="View Career Opportunities"
+    buttonUrl="/careers"
+    backgroundImage="/images/cta/team-collaboration.jpg"
+  />
+  
+</BaseLayout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .section-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .section-subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Mission and Vision Section */
+  .mission-vision {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .mission-vision-content {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .mission, .vision {
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .mission .icon, .vision .icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+  
+  .mission h2, .vision h2 {
+    margin-bottom: 1rem;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .mission p, .vision p {
+    color: #444;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  /* Company Story Section */
+  .company-story {
+    padding: 4rem 0;
+  }
+  
+  .company-story .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+  }
+  
+  .story-content {
+    flex: 2;
+  }
+  
+  .story-image {
+    flex: 1;
+    max-width: 400px;
+  }
+  
+  .story-content h2 {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .story-content p {
+    margin-bottom: 1rem;
+    color: #444;
+    line-height: 1.7;
+  }
+  
+  .story-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Core Values Section */
+  .core-values {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  
+  .value-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .value-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .value-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-light-gray);
+    color: var(--color-teal);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1.5rem;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+  }
+  
+  .value-card:hover .value-icon {
+    background-color: var(--color-teal);
+    color: white;
+  }
+  
+  .value-card h3 {
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .value-card p {
+    color: #666;
+  }
+  
+  /* Timeline Section */
+  .company-timeline {
+    padding: 4rem 0;
+  }
+  
+  .timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 4rem auto 0;
+  }
+  
+  .timeline::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background-color: var(--color-light-gray);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .timeline-item {
+    padding: 1rem 2rem;
+    position: relative;
+    width: 50%;
+    box-sizing: border-box;
+  }
+  
+  .timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-teal);
+    border-radius: 50%;
+    top: 20px;
+    z-index: 1;
+  }
+  
+  .left {
+    left: 0;
+  }
+  
+  .right {
+    left: 50%;
+  }
+  
+  .left::after {
+    right: -10px;
+  }
+  
+  .right::after {
+    left: -10px;
+  }
+  
+  .timeline-content {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .timeline-content .year {
+    display: inline-block;
+    background-color: var(--color-teal);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .timeline-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .timeline-content p {
+    color: #666;
+  }
+  
+  /* Team Section */
+  .team-section {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+  
+  .team-member {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .member-image {
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .member-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(74, 174, 156, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .team-member:hover .member-overlay {
+    opacity: 1;
+  }
+  
+  .team-member:hover .member-image img {
+    transform: scale(1.05);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    color: var(--color-teal);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .social-links a:hover {
+    background-color: var(--color-charcoal-gray);
+    color: white;
+  }
+  
+  .member-info {
+    padding: 1.5rem;
+  }
+  
+  .member-name {
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .member-position {
+    color: var(--color-teal);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .member-bio {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Awards Section */
+  .awards-section {
+    padding: 4rem 0;
+  }
+  
+  .awards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  
+  .award-item {
+    background-color: var(--color-soft-white);
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .award-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-soft-yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    color: var(--color-charcoal-gray);
+    font-size: 1.5rem;
+  }
+  
+  .award-item h3 {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .award-org {
+    color: var(--color-teal);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .award-desc {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  /* Global Presence */
+  .global-presence {
+    padding: 4rem 0;
+    background-color: var(--color-soft-white);
+  }
+  
+  .regions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .region {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .region-icon {
+    width: 50px;
+    height: 50px;
+    background-color: var(--color-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  .region h3 {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--color-teal);
+    font-weight: 600;
+    color: var(--color-charcoal-gray);
+  }
+  
+  .region ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .region ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  
+  .region ul li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Partners Section */
+  .partners-section {
+    padding: 4rem 0;
+  }
+  
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 2rem;
+    margin-top: 2.5rem;
+    align-items: center;
+  }
+  
+  .partner {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .partner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .partner img {
+    max-width: 100%;
+    max-height: 80px;
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  .partner:hover img {
+    filter: grayscale(0);
+    opacity: 1;
+  }
+  
+  /* Company Stats */
+  .company-stats {
+    padding: 4rem 0;
+    background-color: var(--color-charcoal-gray);
+    color: white;
+  }
+  
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+  }
+  
+  .stat-item {
+    text-align: center;
+  }
+  
+  .stat-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-teal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-size: 1.5rem;
+  }
+  
+  .stat-number {
+    display: block;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-teal);
+    margin-bottom: 0.5rem;
+  }
+  
+  .stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 992px) {
+    .company-story .container {
+      flex-direction: column;
+    }
+    
+    .story-content, .story-image {
+      width: 100%;
+    }
+    
+    .story-image {
+      margin-top: 2rem;
+    }
+    
+    .timeline::after {
+      left: 31px;
+    }
+    
+    .timeline-item {
+      width: 100%;
+      padding-left: 70px;
+      padding-right: 25px;
+    }
+    
+    .timeline-item::after {
+      left: 21px;
+    }
+    
+    .right {
+      left: 0;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .mission-vision-content {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .partners-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .partners-grid,
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+    <!-- src/pages/about.astro -->
+---
